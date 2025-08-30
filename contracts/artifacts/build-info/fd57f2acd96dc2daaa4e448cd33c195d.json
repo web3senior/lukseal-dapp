@@ -1,0 +1,164 @@
+{
+	"id": "fd57f2acd96dc2daaa4e448cd33c195d",
+	"_format": "hh-sol-build-info-1",
+	"solcVersion": "0.8.30",
+	"solcLongVersion": "0.8.30+commit.73712a01",
+	"input": {
+		"language": "Solidity",
+		"sources": {
+			"_constant.sol": {
+				"content": "// SPDX-License-Identifier: MIT\npragma solidity ^0.8.24;\n\naddress constant PEPITO_COIN = 0x13fe7655C1BEf7864dfC206838a20d00e5Ce60A1;\naddress constant CONTRACT_STAGE0 = 0xDCCc0d648738D438121a029DDbd0c3519810d114;\n"
+			}
+		},
+		"settings": {
+			"optimizer": {
+				"enabled": true,
+				"runs": 200
+			},
+			"outputSelection": {
+				"*": {
+					"": [
+						"ast"
+					],
+					"*": [
+						"abi",
+						"metadata",
+						"devdoc",
+						"userdoc",
+						"storageLayout",
+						"evm.legacyAssembly",
+						"evm.bytecode",
+						"evm.deployedBytecode",
+						"evm.methodIdentifiers",
+						"evm.gasEstimates",
+						"evm.assembly"
+					]
+				}
+			},
+			"remappings": []
+		}
+	},
+	"output": {
+		"sources": {
+			"_constant.sol": {
+				"ast": {
+					"absolutePath": "_constant.sol",
+					"exportedSymbols": {
+						"CONTRACT_STAGE0": [
+							7
+						],
+						"PEPITO_COIN": [
+							4
+						]
+					},
+					"id": 8,
+					"license": "MIT",
+					"nodeType": "SourceUnit",
+					"nodes": [
+						{
+							"id": 1,
+							"literals": [
+								"solidity",
+								"^",
+								"0.8",
+								".24"
+							],
+							"nodeType": "PragmaDirective",
+							"src": "32:24:0"
+						},
+						{
+							"constant": true,
+							"id": 4,
+							"mutability": "constant",
+							"name": "PEPITO_COIN",
+							"nameLocation": "75:11:0",
+							"nodeType": "VariableDeclaration",
+							"scope": 8,
+							"src": "58:73:0",
+							"stateVariable": false,
+							"storageLocation": "default",
+							"typeDescriptions": {
+								"typeIdentifier": "t_address",
+								"typeString": "address"
+							},
+							"typeName": {
+								"id": 2,
+								"name": "address",
+								"nodeType": "ElementaryTypeName",
+								"src": "58:7:0",
+								"stateMutability": "nonpayable",
+								"typeDescriptions": {
+									"typeIdentifier": "t_address",
+									"typeString": "address"
+								}
+							},
+							"value": {
+								"hexValue": "307831336665373635354331424566373836346466433230363833386132306430306535436536304131",
+								"id": 3,
+								"isConstant": false,
+								"isLValue": false,
+								"isPure": true,
+								"kind": "number",
+								"lValueRequested": false,
+								"nodeType": "Literal",
+								"src": "89:42:0",
+								"typeDescriptions": {
+									"typeIdentifier": "t_address",
+									"typeString": "address"
+								},
+								"value": "0x13fe7655C1BEf7864dfC206838a20d00e5Ce60A1"
+							},
+							"visibility": "internal"
+						},
+						{
+							"constant": true,
+							"id": 7,
+							"mutability": "constant",
+							"name": "CONTRACT_STAGE0",
+							"nameLocation": "150:15:0",
+							"nodeType": "VariableDeclaration",
+							"scope": 8,
+							"src": "133:77:0",
+							"stateVariable": false,
+							"storageLocation": "default",
+							"typeDescriptions": {
+								"typeIdentifier": "t_address",
+								"typeString": "address"
+							},
+							"typeName": {
+								"id": 5,
+								"name": "address",
+								"nodeType": "ElementaryTypeName",
+								"src": "133:7:0",
+								"stateMutability": "nonpayable",
+								"typeDescriptions": {
+									"typeIdentifier": "t_address",
+									"typeString": "address"
+								}
+							},
+							"value": {
+								"hexValue": "307844434363306436343837333844343338313231613032394444626430633335313938313064313134",
+								"id": 6,
+								"isConstant": false,
+								"isLValue": false,
+								"isPure": true,
+								"kind": "number",
+								"lValueRequested": false,
+								"nodeType": "Literal",
+								"src": "168:42:0",
+								"typeDescriptions": {
+									"typeIdentifier": "t_address",
+									"typeString": "address"
+								},
+								"value": "0xDCCc0d648738D438121a029DDbd0c3519810d114"
+							},
+							"visibility": "internal"
+						}
+					],
+					"src": "32:180:0"
+				},
+				"id": 0
+			}
+		}
+	}
+}

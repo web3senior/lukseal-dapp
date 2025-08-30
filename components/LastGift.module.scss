@@ -1,0 +1,30 @@
+@use './../styles/components/responsive' as *;
+
+.lastGift {
+  figure {
+    width: 32px;
+
+    img {
+      width: inherit;
+    }
+  }
+
+}
+
+@include medium-down() {
+  .wallet {
+    padding: 0;
+
+    li {
+      &:first-child {
+        display: none;
+      }
+
+      &:last-child {
+        span {
+          display: none;
+        }
+      }
+    }
+  }
+}

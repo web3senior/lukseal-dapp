@@ -1,0 +1,265 @@
+{
+	"compiler": {
+		"version": "0.8.30+commit.73712a01"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"inputs": [],
+				"name": "AlreadyAtMinLevel",
+				"type": "error"
+			},
+			{
+				"inputs": [],
+				"name": "CooldownPeriodNotPassed",
+				"type": "error"
+			},
+			{
+				"inputs": [],
+				"name": "InsufficientContractBalance",
+				"type": "error"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "required",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "sent",
+						"type": "uint256"
+					}
+				],
+				"name": "InsufficientPayment",
+				"type": "error"
+			},
+			{
+				"inputs": [],
+				"name": "InvalidAddress",
+				"type": "error"
+			},
+			{
+				"inputs": [],
+				"name": "InvalidPhase",
+				"type": "error"
+			},
+			{
+				"inputs": [],
+				"name": "MaxLevelReached",
+				"type": "error"
+			},
+			{
+				"inputs": [],
+				"name": "MaxMintExceeded",
+				"type": "error"
+			},
+			{
+				"inputs": [],
+				"name": "MaxMintPerWalletExceeded",
+				"type": "error"
+			},
+			{
+				"inputs": [],
+				"name": "MaxSupplyExceeded",
+				"type": "error"
+			},
+			{
+				"inputs": [],
+				"name": "NotAMemberCardHolder",
+				"type": "error"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "requiredXP",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "currentXP",
+						"type": "uint256"
+					}
+				],
+				"name": "NotEnoughXP",
+				"type": "error"
+			},
+			{
+				"inputs": [],
+				"name": "NotWhitelisted",
+				"type": "error"
+			},
+			{
+				"inputs": [],
+				"name": "PhaseNotActive",
+				"type": "error"
+			},
+			{
+				"inputs": [],
+				"name": "PhaseSupplyExceeded",
+				"type": "error"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "totalAmount",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "authorizedAmount",
+						"type": "uint256"
+					}
+				],
+				"name": "UnauthorizedAmount",
+				"type": "error"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "operator",
+						"type": "address"
+					}
+				],
+				"name": "UnauthorizedOperator",
+				"type": "error"
+			},
+			{
+				"inputs": [],
+				"name": "UnauthorizedOwner",
+				"type": "error"
+			}
+		],
+		"devdoc": {
+			"author": "Aratta Labs",
+			"details": "This library contains custom errors used throughout the smart contracts. Using custom errors is more gas-efficient than traditional `require` statements with string messages, as the error data is stored as a selector and is logged as part of the transaction's revert reason. This provides more granular feedback.",
+			"errors": {
+				"AlreadyAtMinLevel()": [
+					{
+						"details": "Emitted when a token's level-down attempt is made but it is already at its minimum level. "
+					}
+				],
+				"CooldownPeriodNotPassed()": [
+					{
+						"details": "Emitted when a function requiring a specific cooldown period is called before it's over. "
+					}
+				],
+				"InsufficientContractBalance()": [
+					{
+						"details": "Emitted when the contract's native token balance is insufficient for a withdrawal or transfer. "
+					}
+				],
+				"InsufficientPayment(uint256,uint256)": [
+					{
+						"details": "Emitted when the sent ETH value is less than the required amount for a transaction. "
+					}
+				],
+				"InvalidPhase()": [
+					{
+						"details": "Emitted when a minting operation is attempted during an invalid or inactive phase. "
+					}
+				],
+				"MaxLevelReached()": [
+					{
+						"details": "Emitted when a token's level-up attempt is made but it has already reached its maximum level. "
+					}
+				],
+				"MaxMintExceeded()": [
+					{
+						"details": "Emitted when the requested number of NFTs to mint exceeds the allowed maximum. "
+					}
+				],
+				"MaxMintPerWalletExceeded()": [
+					{
+						"details": "Emitted when a wallet has exceeded the maximum number of NFTs it can mint. "
+					}
+				],
+				"MaxSupplyExceeded()": [
+					{
+						"details": "Emitted when the total supply limit of the NFT collection has been reached. "
+					}
+				],
+				"NotAMemberCardHolder()": [
+					{
+						"details": "Emitted when an address attempts to mint but does not hold a required membership card. "
+					}
+				],
+				"NotEnoughXP(uint256,uint256)": [
+					{
+						"details": "Emitted when a token's level-up attempt fails due to insufficient experience points (XP). "
+					}
+				],
+				"NotWhitelisted()": [
+					{
+						"details": "Emitted when an address attempts to mint but is not on the whitelist. "
+					}
+				],
+				"PhaseNotActive()": [
+					{
+						"details": "Emitted when the current minting phase is not active. "
+					}
+				],
+				"PhaseSupplyExceeded()": [
+					{
+						"details": "Emitted when the supply for the current minting phase has been exhausted. "
+					}
+				],
+				"UnauthorizedAmount(uint256,uint256)": [
+					{
+						"details": "Emitted when a requested amount for an operation (e.g., transfer, burn) is not fully authorized. "
+					}
+				],
+				"UnauthorizedOperator(address)": [
+					{
+						"details": "Emitted when a function with an operator check is called by an address that is not an approved operator. "
+					}
+				],
+				"UnauthorizedOwner()": [
+					{
+						"details": "Emitted when a function with `onlyOwner` is called by an address that is not the contract owner. "
+					}
+				]
+			},
+			"kind": "dev",
+			"methods": {},
+			"title": "Errors",
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {},
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"Error.sol": "Errors"
+		},
+		"evmVersion": "prague",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": true,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"Error.sol": {
+			"keccak256": "0x4f8866c64480e6461646aec155f27b38ccc06a56fcafc31d07442d587461f0e7",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://d6af7d81d61692684f228512b472744f46fb7db6557cfaa16effe43af86aac2d",
+				"dweb:/ipfs/QmaQnXRTKDWJ7sXbBKVuMsu7d1w7zVnwvWaEdZuWZrREhz"
+			]
+		}
+	},
+	"version": 1
+}

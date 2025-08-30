@@ -1,0 +1,1248 @@
+{
+	"id": "81a1c81510ef6f396e681c148d2c6eb9",
+	"_format": "hh-sol-build-info-1",
+	"solcVersion": "0.8.30",
+	"solcLongVersion": "0.8.30+commit.73712a01",
+	"input": {
+		"language": "Solidity",
+		"sources": {
+			"Error.sol": {
+				"content": "// SPDX-License-Identifier: MIT\npragma solidity ^0.8.30;\n\n/**\n * @title Errors\n * @author Aratta Labs\n * @dev This library contains custom errors used throughout the smart contracts.\n * Using custom errors is more gas-efficient than traditional `require` statements\n * with string messages, as the error data is stored as a selector and is logged\n * as part of the transaction's revert reason. This provides more granular feedback.\n */\nlibrary Errors {\n    // ---------------------------------------------------------------- //\n    //                      MINTING AND SUPPLY ERRORS                   //\n    // ---------------------------------------------------------------- //\n\n    /** @dev Emitted when the total supply limit of the NFT collection has been reached. */\n    error MaxSupplyExceeded();\n\n    /** @dev Emitted when a minting operation is attempted during an invalid or inactive phase. */\n    error InvalidPhase();\n\n    /** @dev Emitted when the current minting phase is not active. */\n    error PhaseNotActive();\n\n    /** @dev Emitted when a wallet has exceeded the maximum number of NFTs it can mint. */\n    error MaxMintPerWalletExceeded();\n\n    /** @dev Emitted when the supply for the current minting phase has been exhausted. */\n    error PhaseSupplyExceeded();\n\n    /** @dev Emitted when the requested number of NFTs to mint exceeds the allowed maximum. */\n    error MaxMintExceeded();\n\n    /** @dev Emitted when an address attempts to mint but is not on the whitelist. */\n    error NotWhitelisted();\n\n    /** @dev Emitted when an address attempts to mint but does not hold a required membership card. */\n    error NotAMemberCardHolder();\n\n    /** @dev Emitted when a function requiring a specific cooldown period is called before it's over. */\n    error CooldownPeriodNotPassed();\n\n    // ---------------------------------------------------------------- //\n    //                      TOKEN LOGIC ERRORS                          //\n    // ---------------------------------------------------------------- //\n\n    /** @dev Emitted when a token's level-up attempt is made but it has already reached its maximum level. */\n    error MaxLevelReached();\n\n    /** @dev Emitted when a token's level-up attempt fails due to insufficient experience points (XP). */\n    error NotEnoughXP(uint256 requiredXP, uint256 currentXP);\n\n    /** @dev Emitted when a token's level-down attempt is made but it is already at its minimum level. */\n    error AlreadyAtMinLevel();\n\n    // ---------------------------------------------------------------- //\n    //                      ACCESS CONTROL ERRORS                       //\n    // ---------------------------------------------------------------- //\n\n    /** @dev Emitted when a function with `onlyOwner` is called by an address that is not the contract owner. */\n    error UnauthorizedOwner();\n\n    /** @dev Emitted when a function with an operator check is called by an address that is not an approved operator. */\n    error UnauthorizedOperator(address operator);\n\n    error InvalidAddress();\n\n    // ---------------------------------------------------------------- //\n    //                      BALANCE & PAYMENT ERRORS                    //\n    // ---------------------------------------------------------------- //\n\n    /** @dev Emitted when the sent ETH value is less than the required amount for a transaction. */\n    error InsufficientPayment(uint256 required, uint256 sent);\n\n    /** @dev Emitted when the contract's native token balance is insufficient for a withdrawal or transfer. */\n    error InsufficientContractBalance();\n\n    /** @dev Emitted when a requested amount for an operation (e.g., transfer, burn) is not fully authorized. */\n    error UnauthorizedAmount(uint256 totalAmount, uint256 authorizedAmount);\n}"
+			}
+		},
+		"settings": {
+			"optimizer": {
+				"enabled": true,
+				"runs": 200
+			},
+			"outputSelection": {
+				"*": {
+					"": [
+						"ast"
+					],
+					"*": [
+						"abi",
+						"metadata",
+						"devdoc",
+						"userdoc",
+						"storageLayout",
+						"evm.legacyAssembly",
+						"evm.bytecode",
+						"evm.deployedBytecode",
+						"evm.methodIdentifiers",
+						"evm.gasEstimates",
+						"evm.assembly"
+					]
+				}
+			},
+			"remappings": []
+		}
+	},
+	"output": {
+		"contracts": {
+			"Error.sol": {
+				"Errors": {
+					"abi": [
+						{
+							"inputs": [],
+							"name": "AlreadyAtMinLevel",
+							"type": "error"
+						},
+						{
+							"inputs": [],
+							"name": "CooldownPeriodNotPassed",
+							"type": "error"
+						},
+						{
+							"inputs": [],
+							"name": "InsufficientContractBalance",
+							"type": "error"
+						},
+						{
+							"inputs": [
+								{
+									"internalType": "uint256",
+									"name": "required",
+									"type": "uint256"
+								},
+								{
+									"internalType": "uint256",
+									"name": "sent",
+									"type": "uint256"
+								}
+							],
+							"name": "InsufficientPayment",
+							"type": "error"
+						},
+						{
+							"inputs": [],
+							"name": "InvalidAddress",
+							"type": "error"
+						},
+						{
+							"inputs": [],
+							"name": "InvalidPhase",
+							"type": "error"
+						},
+						{
+							"inputs": [],
+							"name": "MaxLevelReached",
+							"type": "error"
+						},
+						{
+							"inputs": [],
+							"name": "MaxMintExceeded",
+							"type": "error"
+						},
+						{
+							"inputs": [],
+							"name": "MaxMintPerWalletExceeded",
+							"type": "error"
+						},
+						{
+							"inputs": [],
+							"name": "MaxSupplyExceeded",
+							"type": "error"
+						},
+						{
+							"inputs": [],
+							"name": "NotAMemberCardHolder",
+							"type": "error"
+						},
+						{
+							"inputs": [
+								{
+									"internalType": "uint256",
+									"name": "requiredXP",
+									"type": "uint256"
+								},
+								{
+									"internalType": "uint256",
+									"name": "currentXP",
+									"type": "uint256"
+								}
+							],
+							"name": "NotEnoughXP",
+							"type": "error"
+						},
+						{
+							"inputs": [],
+							"name": "NotWhitelisted",
+							"type": "error"
+						},
+						{
+							"inputs": [],
+							"name": "PhaseNotActive",
+							"type": "error"
+						},
+						{
+							"inputs": [],
+							"name": "PhaseSupplyExceeded",
+							"type": "error"
+						},
+						{
+							"inputs": [
+								{
+									"internalType": "uint256",
+									"name": "totalAmount",
+									"type": "uint256"
+								},
+								{
+									"internalType": "uint256",
+									"name": "authorizedAmount",
+									"type": "uint256"
+								}
+							],
+							"name": "UnauthorizedAmount",
+							"type": "error"
+						},
+						{
+							"inputs": [
+								{
+									"internalType": "address",
+									"name": "operator",
+									"type": "address"
+								}
+							],
+							"name": "UnauthorizedOperator",
+							"type": "error"
+						},
+						{
+							"inputs": [],
+							"name": "UnauthorizedOwner",
+							"type": "error"
+						}
+					],
+					"devdoc": {
+						"author": "Aratta Labs",
+						"details": "This library contains custom errors used throughout the smart contracts. Using custom errors is more gas-efficient than traditional `require` statements with string messages, as the error data is stored as a selector and is logged as part of the transaction's revert reason. This provides more granular feedback.",
+						"errors": {
+							"AlreadyAtMinLevel()": [
+								{
+									"details": "Emitted when a token's level-down attempt is made but it is already at its minimum level. "
+								}
+							],
+							"CooldownPeriodNotPassed()": [
+								{
+									"details": "Emitted when a function requiring a specific cooldown period is called before it's over. "
+								}
+							],
+							"InsufficientContractBalance()": [
+								{
+									"details": "Emitted when the contract's native token balance is insufficient for a withdrawal or transfer. "
+								}
+							],
+							"InsufficientPayment(uint256,uint256)": [
+								{
+									"details": "Emitted when the sent ETH value is less than the required amount for a transaction. "
+								}
+							],
+							"InvalidPhase()": [
+								{
+									"details": "Emitted when a minting operation is attempted during an invalid or inactive phase. "
+								}
+							],
+							"MaxLevelReached()": [
+								{
+									"details": "Emitted when a token's level-up attempt is made but it has already reached its maximum level. "
+								}
+							],
+							"MaxMintExceeded()": [
+								{
+									"details": "Emitted when the requested number of NFTs to mint exceeds the allowed maximum. "
+								}
+							],
+							"MaxMintPerWalletExceeded()": [
+								{
+									"details": "Emitted when a wallet has exceeded the maximum number of NFTs it can mint. "
+								}
+							],
+							"MaxSupplyExceeded()": [
+								{
+									"details": "Emitted when the total supply limit of the NFT collection has been reached. "
+								}
+							],
+							"NotAMemberCardHolder()": [
+								{
+									"details": "Emitted when an address attempts to mint but does not hold a required membership card. "
+								}
+							],
+							"NotEnoughXP(uint256,uint256)": [
+								{
+									"details": "Emitted when a token's level-up attempt fails due to insufficient experience points (XP). "
+								}
+							],
+							"NotWhitelisted()": [
+								{
+									"details": "Emitted when an address attempts to mint but is not on the whitelist. "
+								}
+							],
+							"PhaseNotActive()": [
+								{
+									"details": "Emitted when the current minting phase is not active. "
+								}
+							],
+							"PhaseSupplyExceeded()": [
+								{
+									"details": "Emitted when the supply for the current minting phase has been exhausted. "
+								}
+							],
+							"UnauthorizedAmount(uint256,uint256)": [
+								{
+									"details": "Emitted when a requested amount for an operation (e.g., transfer, burn) is not fully authorized. "
+								}
+							],
+							"UnauthorizedOperator(address)": [
+								{
+									"details": "Emitted when a function with an operator check is called by an address that is not an approved operator. "
+								}
+							],
+							"UnauthorizedOwner()": [
+								{
+									"details": "Emitted when a function with `onlyOwner` is called by an address that is not the contract owner. "
+								}
+							]
+						},
+						"kind": "dev",
+						"methods": {},
+						"title": "Errors",
+						"version": 1
+					},
+					"evm": {
+						"assembly": "    /* \"Error.sol\":436:3782  library Errors {... */\n  dataSize(sub_0)\n  dataOffset(sub_0)\n  0x0b\n  dup3\n  dup3\n  dup3\n  codecopy\n  dup1\n  mload\n  0x00\n  byte\n  0x73\n  eq\n  tag_1\n  jumpi\n  mstore(0x00, shl(0xe0, 0x4e487b71))\n  mstore(0x04, 0x00)\n  revert(0x00, 0x24)\ntag_1:\n  mstore(0x00, address)\n  0x73\n  dup2\n  mstore8\n  dup3\n  dup2\n  return\nstop\n\nsub_0: assembly {\n        /* \"Error.sol\":436:3782  library Errors {... */\n      eq(address, deployTimeAddress())\n      mstore(0x40, 0x80)\n      revert(0x00, 0x00)\n\n    auxdata: 0xa264697066735822122084624a2b27a50406606cb8da1fded21c8e09b444e6d542b3d96ae37ccc94ddb064736f6c634300081e0033\n}\n",
+						"bytecode": {
+							"functionDebugData": {},
+							"generatedSources": [],
+							"linkReferences": {},
+							"object": "60556032600b8282823980515f1a607314602657634e487b7160e01b5f525f60045260245ffd5b305f52607381538281f3fe730000000000000000000000000000000000000000301460806040525f5ffdfea264697066735822122084624a2b27a50406606cb8da1fded21c8e09b444e6d542b3d96ae37ccc94ddb064736f6c634300081e0033",
+							"opcodes": "PUSH1 0x55 PUSH1 0x32 PUSH1 0xB DUP3 DUP3 DUP3 CODECOPY DUP1 MLOAD PUSH0 BYTE PUSH1 0x73 EQ PUSH1 0x26 JUMPI PUSH4 0x4E487B71 PUSH1 0xE0 SHL PUSH0 MSTORE PUSH0 PUSH1 0x4 MSTORE PUSH1 0x24 PUSH0 REVERT JUMPDEST ADDRESS PUSH0 MSTORE PUSH1 0x73 DUP2 MSTORE8 DUP3 DUP2 RETURN INVALID PUSH20 0x0 ADDRESS EQ PUSH1 0x80 PUSH1 0x40 MSTORE PUSH0 PUSH0 REVERT INVALID LOG2 PUSH5 0x6970667358 0x22 SLT KECCAK256 DUP5 PUSH3 0x4A2B27 0xA5 DIV MOD PUSH1 0x6C 0xB8 0xDA 0x1F 0xDE 0xD2 SHR DUP15 MULMOD 0xB4 PREVRANDAO DUPN 0xD5 TIMESTAMP 0xB3 0xD9 PUSH11 0xE37CCC94DDB064736F6C63 NUMBER STOP ADDMOD 0x1E STOP CALLER ",
+							"sourceMap": "436:3346:0:-:0;;;;;;;;;;;;;;;-1:-1:-1;;;436:3346:0;;;;;;;;;;;;;;;;;"
+						},
+						"deployedBytecode": {
+							"functionDebugData": {},
+							"generatedSources": [],
+							"immutableReferences": {},
+							"linkReferences": {},
+							"object": "730000000000000000000000000000000000000000301460806040525f5ffdfea264697066735822122084624a2b27a50406606cb8da1fded21c8e09b444e6d542b3d96ae37ccc94ddb064736f6c634300081e0033",
+							"opcodes": "PUSH20 0x0 ADDRESS EQ PUSH1 0x80 PUSH1 0x40 MSTORE PUSH0 PUSH0 REVERT INVALID LOG2 PUSH5 0x6970667358 0x22 SLT KECCAK256 DUP5 PUSH3 0x4A2B27 0xA5 DIV MOD PUSH1 0x6C 0xB8 0xDA 0x1F 0xDE 0xD2 SHR DUP15 MULMOD 0xB4 PREVRANDAO DUPN 0xD5 TIMESTAMP 0xB3 0xD9 PUSH11 0xE37CCC94DDB064736F6C63 NUMBER STOP ADDMOD 0x1E STOP CALLER ",
+							"sourceMap": "436:3346:0:-:0;;;;;;;;"
+						},
+						"gasEstimates": {
+							"creation": {
+								"codeDepositCost": "17000",
+								"executionCost": "96",
+								"totalCost": "17096"
+							}
+						},
+						"legacyAssembly": {
+							".code": [
+								{
+									"begin": 436,
+									"end": 3782,
+									"name": "PUSH #[$]",
+									"source": 0,
+									"value": "0000000000000000000000000000000000000000000000000000000000000000"
+								},
+								{
+									"begin": 436,
+									"end": 3782,
+									"name": "PUSH [$]",
+									"source": 0,
+									"value": "0000000000000000000000000000000000000000000000000000000000000000"
+								},
+								{
+									"begin": 436,
+									"end": 3782,
+									"name": "PUSH",
+									"source": 0,
+									"value": "B"
+								},
+								{
+									"begin": 436,
+									"end": 3782,
+									"name": "DUP3",
+									"source": 0
+								},
+								{
+									"begin": 436,
+									"end": 3782,
+									"name": "DUP3",
+									"source": 0
+								},
+								{
+									"begin": 436,
+									"end": 3782,
+									"name": "DUP3",
+									"source": 0
+								},
+								{
+									"begin": 436,
+									"end": 3782,
+									"name": "CODECOPY",
+									"source": 0
+								},
+								{
+									"begin": 436,
+									"end": 3782,
+									"name": "DUP1",
+									"source": 0
+								},
+								{
+									"begin": 436,
+									"end": 3782,
+									"name": "MLOAD",
+									"source": 0
+								},
+								{
+									"begin": 436,
+									"end": 3782,
+									"name": "PUSH",
+									"source": 0,
+									"value": "0"
+								},
+								{
+									"begin": 436,
+									"end": 3782,
+									"name": "BYTE",
+									"source": 0
+								},
+								{
+									"begin": 436,
+									"end": 3782,
+									"name": "PUSH",
+									"source": 0,
+									"value": "73"
+								},
+								{
+									"begin": 436,
+									"end": 3782,
+									"name": "EQ",
+									"source": 0
+								},
+								{
+									"begin": 436,
+									"end": 3782,
+									"name": "PUSH [tag]",
+									"source": 0,
+									"value": "1"
+								},
+								{
+									"begin": 436,
+									"end": 3782,
+									"name": "JUMPI",
+									"source": 0
+								},
+								{
+									"begin": -1,
+									"end": -1,
+									"name": "PUSH",
+									"source": -1,
+									"value": "4E487B71"
+								},
+								{
+									"begin": -1,
+									"end": -1,
+									"name": "PUSH",
+									"source": -1,
+									"value": "E0"
+								},
+								{
+									"begin": -1,
+									"end": -1,
+									"name": "SHL",
+									"source": -1
+								},
+								{
+									"begin": 436,
+									"end": 3782,
+									"name": "PUSH",
+									"source": 0,
+									"value": "0"
+								},
+								{
+									"begin": 436,
+									"end": 3782,
+									"name": "MSTORE",
+									"source": 0
+								},
+								{
+									"begin": 436,
+									"end": 3782,
+									"name": "PUSH",
+									"source": 0,
+									"value": "0"
+								},
+								{
+									"begin": 436,
+									"end": 3782,
+									"name": "PUSH",
+									"source": 0,
+									"value": "4"
+								},
+								{
+									"begin": 436,
+									"end": 3782,
+									"name": "MSTORE",
+									"source": 0
+								},
+								{
+									"begin": 436,
+									"end": 3782,
+									"name": "PUSH",
+									"source": 0,
+									"value": "24"
+								},
+								{
+									"begin": 436,
+									"end": 3782,
+									"name": "PUSH",
+									"source": 0,
+									"value": "0"
+								},
+								{
+									"begin": 436,
+									"end": 3782,
+									"name": "REVERT",
+									"source": 0
+								},
+								{
+									"begin": 436,
+									"end": 3782,
+									"name": "tag",
+									"source": 0,
+									"value": "1"
+								},
+								{
+									"begin": 436,
+									"end": 3782,
+									"name": "JUMPDEST",
+									"source": 0
+								},
+								{
+									"begin": 436,
+									"end": 3782,
+									"name": "ADDRESS",
+									"source": 0
+								},
+								{
+									"begin": 436,
+									"end": 3782,
+									"name": "PUSH",
+									"source": 0,
+									"value": "0"
+								},
+								{
+									"begin": 436,
+									"end": 3782,
+									"name": "MSTORE",
+									"source": 0
+								},
+								{
+									"begin": 436,
+									"end": 3782,
+									"name": "PUSH",
+									"source": 0,
+									"value": "73"
+								},
+								{
+									"begin": 436,
+									"end": 3782,
+									"name": "DUP2",
+									"source": 0
+								},
+								{
+									"begin": 436,
+									"end": 3782,
+									"name": "MSTORE8",
+									"source": 0
+								},
+								{
+									"begin": 436,
+									"end": 3782,
+									"name": "DUP3",
+									"source": 0
+								},
+								{
+									"begin": 436,
+									"end": 3782,
+									"name": "DUP2",
+									"source": 0
+								},
+								{
+									"begin": 436,
+									"end": 3782,
+									"name": "RETURN",
+									"source": 0
+								}
+							],
+							".data": {
+								"0": {
+									".auxdata": "a264697066735822122084624a2b27a50406606cb8da1fded21c8e09b444e6d542b3d96ae37ccc94ddb064736f6c634300081e0033",
+									".code": [
+										{
+											"begin": 436,
+											"end": 3782,
+											"name": "PUSHDEPLOYADDRESS",
+											"source": 0
+										},
+										{
+											"begin": 436,
+											"end": 3782,
+											"name": "ADDRESS",
+											"source": 0
+										},
+										{
+											"begin": 436,
+											"end": 3782,
+											"name": "EQ",
+											"source": 0
+										},
+										{
+											"begin": 436,
+											"end": 3782,
+											"name": "PUSH",
+											"source": 0,
+											"value": "80"
+										},
+										{
+											"begin": 436,
+											"end": 3782,
+											"name": "PUSH",
+											"source": 0,
+											"value": "40"
+										},
+										{
+											"begin": 436,
+											"end": 3782,
+											"name": "MSTORE",
+											"source": 0
+										},
+										{
+											"begin": 436,
+											"end": 3782,
+											"name": "PUSH",
+											"source": 0,
+											"value": "0"
+										},
+										{
+											"begin": 436,
+											"end": 3782,
+											"name": "PUSH",
+											"source": 0,
+											"value": "0"
+										},
+										{
+											"begin": 436,
+											"end": 3782,
+											"name": "REVERT",
+											"source": 0
+										}
+									]
+								}
+							},
+							"sourceList": [
+								"Error.sol",
+								"#utility.yul"
+							]
+						},
+						"methodIdentifiers": {}
+					},
+					"metadata": "{\"compiler\":{\"version\":\"0.8.30+commit.73712a01\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[],\"name\":\"AlreadyAtMinLevel\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"CooldownPeriodNotPassed\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"InsufficientContractBalance\",\"type\":\"error\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"required\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"sent\",\"type\":\"uint256\"}],\"name\":\"InsufficientPayment\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"InvalidAddress\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"InvalidPhase\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"MaxLevelReached\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"MaxMintExceeded\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"MaxMintPerWalletExceeded\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"MaxSupplyExceeded\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"NotAMemberCardHolder\",\"type\":\"error\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"requiredXP\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"currentXP\",\"type\":\"uint256\"}],\"name\":\"NotEnoughXP\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"NotWhitelisted\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"PhaseNotActive\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"PhaseSupplyExceeded\",\"type\":\"error\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"totalAmount\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"authorizedAmount\",\"type\":\"uint256\"}],\"name\":\"UnauthorizedAmount\",\"type\":\"error\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"operator\",\"type\":\"address\"}],\"name\":\"UnauthorizedOperator\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"UnauthorizedOwner\",\"type\":\"error\"}],\"devdoc\":{\"author\":\"Aratta Labs\",\"details\":\"This library contains custom errors used throughout the smart contracts. Using custom errors is more gas-efficient than traditional `require` statements with string messages, as the error data is stored as a selector and is logged as part of the transaction's revert reason. This provides more granular feedback.\",\"errors\":{\"AlreadyAtMinLevel()\":[{\"details\":\"Emitted when a token's level-down attempt is made but it is already at its minimum level. \"}],\"CooldownPeriodNotPassed()\":[{\"details\":\"Emitted when a function requiring a specific cooldown period is called before it's over. \"}],\"InsufficientContractBalance()\":[{\"details\":\"Emitted when the contract's native token balance is insufficient for a withdrawal or transfer. \"}],\"InsufficientPayment(uint256,uint256)\":[{\"details\":\"Emitted when the sent ETH value is less than the required amount for a transaction. \"}],\"InvalidPhase()\":[{\"details\":\"Emitted when a minting operation is attempted during an invalid or inactive phase. \"}],\"MaxLevelReached()\":[{\"details\":\"Emitted when a token's level-up attempt is made but it has already reached its maximum level. \"}],\"MaxMintExceeded()\":[{\"details\":\"Emitted when the requested number of NFTs to mint exceeds the allowed maximum. \"}],\"MaxMintPerWalletExceeded()\":[{\"details\":\"Emitted when a wallet has exceeded the maximum number of NFTs it can mint. \"}],\"MaxSupplyExceeded()\":[{\"details\":\"Emitted when the total supply limit of the NFT collection has been reached. \"}],\"NotAMemberCardHolder()\":[{\"details\":\"Emitted when an address attempts to mint but does not hold a required membership card. \"}],\"NotEnoughXP(uint256,uint256)\":[{\"details\":\"Emitted when a token's level-up attempt fails due to insufficient experience points (XP). \"}],\"NotWhitelisted()\":[{\"details\":\"Emitted when an address attempts to mint but is not on the whitelist. \"}],\"PhaseNotActive()\":[{\"details\":\"Emitted when the current minting phase is not active. \"}],\"PhaseSupplyExceeded()\":[{\"details\":\"Emitted when the supply for the current minting phase has been exhausted. \"}],\"UnauthorizedAmount(uint256,uint256)\":[{\"details\":\"Emitted when a requested amount for an operation (e.g., transfer, burn) is not fully authorized. \"}],\"UnauthorizedOperator(address)\":[{\"details\":\"Emitted when a function with an operator check is called by an address that is not an approved operator. \"}],\"UnauthorizedOwner()\":[{\"details\":\"Emitted when a function with `onlyOwner` is called by an address that is not the contract owner. \"}]},\"kind\":\"dev\",\"methods\":{},\"title\":\"Errors\",\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"version\":1}},\"settings\":{\"compilationTarget\":{\"Error.sol\":\"Errors\"},\"evmVersion\":\"prague\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":true,\"runs\":200},\"remappings\":[]},\"sources\":{\"Error.sol\":{\"keccak256\":\"0x4f8866c64480e6461646aec155f27b38ccc06a56fcafc31d07442d587461f0e7\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://d6af7d81d61692684f228512b472744f46fb7db6557cfaa16effe43af86aac2d\",\"dweb:/ipfs/QmaQnXRTKDWJ7sXbBKVuMsu7d1w7zVnwvWaEdZuWZrREhz\"]}},\"version\":1}",
+					"storageLayout": {
+						"storage": [],
+						"types": null
+					},
+					"userdoc": {
+						"kind": "user",
+						"methods": {},
+						"version": 1
+					}
+				}
+			}
+		},
+		"sources": {
+			"Error.sol": {
+				"ast": {
+					"absolutePath": "Error.sol",
+					"exportedSymbols": {
+						"Errors": [
+							70
+						]
+					},
+					"id": 71,
+					"license": "MIT",
+					"nodeType": "SourceUnit",
+					"nodes": [
+						{
+							"id": 1,
+							"literals": [
+								"solidity",
+								"^",
+								"0.8",
+								".30"
+							],
+							"nodeType": "PragmaDirective",
+							"src": "32:24:0"
+						},
+						{
+							"abstract": false,
+							"baseContracts": [],
+							"canonicalName": "Errors",
+							"contractDependencies": [],
+							"contractKind": "library",
+							"documentation": {
+								"id": 2,
+								"nodeType": "StructuredDocumentation",
+								"src": "58:377:0",
+								"text": " @title Errors\n @author Aratta Labs\n @dev This library contains custom errors used throughout the smart contracts.\n Using custom errors is more gas-efficient than traditional `require` statements\n with string messages, as the error data is stored as a selector and is logged\n as part of the transaction's revert reason. This provides more granular feedback."
+							},
+							"fullyImplemented": true,
+							"id": 70,
+							"linearizedBaseContracts": [
+								70
+							],
+							"name": "Errors",
+							"nameLocation": "444:6:0",
+							"nodeType": "ContractDefinition",
+							"nodes": [
+								{
+									"documentation": {
+										"id": 3,
+										"nodeType": "StructuredDocumentation",
+										"src": "683:87:0",
+										"text": "@dev Emitted when the total supply limit of the NFT collection has been reached. "
+									},
+									"errorSelector": "8a164f63",
+									"id": 5,
+									"name": "MaxSupplyExceeded",
+									"nameLocation": "781:17:0",
+									"nodeType": "ErrorDefinition",
+									"parameters": {
+										"id": 4,
+										"nodeType": "ParameterList",
+										"parameters": [],
+										"src": "798:2:0"
+									},
+									"src": "775:26:0"
+								},
+								{
+									"documentation": {
+										"id": 6,
+										"nodeType": "StructuredDocumentation",
+										"src": "807:94:0",
+										"text": "@dev Emitted when a minting operation is attempted during an invalid or inactive phase. "
+									},
+									"errorSelector": "9a36fd9c",
+									"id": 8,
+									"name": "InvalidPhase",
+									"nameLocation": "912:12:0",
+									"nodeType": "ErrorDefinition",
+									"parameters": {
+										"id": 7,
+										"nodeType": "ParameterList",
+										"parameters": [],
+										"src": "924:2:0"
+									},
+									"src": "906:21:0"
+								},
+								{
+									"documentation": {
+										"id": 9,
+										"nodeType": "StructuredDocumentation",
+										"src": "933:65:0",
+										"text": "@dev Emitted when the current minting phase is not active. "
+									},
+									"errorSelector": "21094a9b",
+									"id": 11,
+									"name": "PhaseNotActive",
+									"nameLocation": "1009:14:0",
+									"nodeType": "ErrorDefinition",
+									"parameters": {
+										"id": 10,
+										"nodeType": "ParameterList",
+										"parameters": [],
+										"src": "1023:2:0"
+									},
+									"src": "1003:23:0"
+								},
+								{
+									"documentation": {
+										"id": 12,
+										"nodeType": "StructuredDocumentation",
+										"src": "1032:86:0",
+										"text": "@dev Emitted when a wallet has exceeded the maximum number of NFTs it can mint. "
+									},
+									"errorSelector": "979afdba",
+									"id": 14,
+									"name": "MaxMintPerWalletExceeded",
+									"nameLocation": "1129:24:0",
+									"nodeType": "ErrorDefinition",
+									"parameters": {
+										"id": 13,
+										"nodeType": "ParameterList",
+										"parameters": [],
+										"src": "1153:2:0"
+									},
+									"src": "1123:33:0"
+								},
+								{
+									"documentation": {
+										"id": 15,
+										"nodeType": "StructuredDocumentation",
+										"src": "1162:85:0",
+										"text": "@dev Emitted when the supply for the current minting phase has been exhausted. "
+									},
+									"errorSelector": "342428eb",
+									"id": 17,
+									"name": "PhaseSupplyExceeded",
+									"nameLocation": "1258:19:0",
+									"nodeType": "ErrorDefinition",
+									"parameters": {
+										"id": 16,
+										"nodeType": "ParameterList",
+										"parameters": [],
+										"src": "1277:2:0"
+									},
+									"src": "1252:28:0"
+								},
+								{
+									"documentation": {
+										"id": 18,
+										"nodeType": "StructuredDocumentation",
+										"src": "1286:90:0",
+										"text": "@dev Emitted when the requested number of NFTs to mint exceeds the allowed maximum. "
+									},
+									"errorSelector": "79d2bf0a",
+									"id": 20,
+									"name": "MaxMintExceeded",
+									"nameLocation": "1387:15:0",
+									"nodeType": "ErrorDefinition",
+									"parameters": {
+										"id": 19,
+										"nodeType": "ParameterList",
+										"parameters": [],
+										"src": "1402:2:0"
+									},
+									"src": "1381:24:0"
+								},
+								{
+									"documentation": {
+										"id": 21,
+										"nodeType": "StructuredDocumentation",
+										"src": "1411:81:0",
+										"text": "@dev Emitted when an address attempts to mint but is not on the whitelist. "
+									},
+									"errorSelector": "584a7938",
+									"id": 23,
+									"name": "NotWhitelisted",
+									"nameLocation": "1503:14:0",
+									"nodeType": "ErrorDefinition",
+									"parameters": {
+										"id": 22,
+										"nodeType": "ParameterList",
+										"parameters": [],
+										"src": "1517:2:0"
+									},
+									"src": "1497:23:0"
+								},
+								{
+									"documentation": {
+										"id": 24,
+										"nodeType": "StructuredDocumentation",
+										"src": "1526:98:0",
+										"text": "@dev Emitted when an address attempts to mint but does not hold a required membership card. "
+									},
+									"errorSelector": "8d7141fa",
+									"id": 26,
+									"name": "NotAMemberCardHolder",
+									"nameLocation": "1635:20:0",
+									"nodeType": "ErrorDefinition",
+									"parameters": {
+										"id": 25,
+										"nodeType": "ParameterList",
+										"parameters": [],
+										"src": "1655:2:0"
+									},
+									"src": "1629:29:0"
+								},
+								{
+									"documentation": {
+										"id": 27,
+										"nodeType": "StructuredDocumentation",
+										"src": "1664:100:0",
+										"text": "@dev Emitted when a function requiring a specific cooldown period is called before it's over. "
+									},
+									"errorSelector": "d325c3d8",
+									"id": 29,
+									"name": "CooldownPeriodNotPassed",
+									"nameLocation": "1775:23:0",
+									"nodeType": "ErrorDefinition",
+									"parameters": {
+										"id": 28,
+										"nodeType": "ParameterList",
+										"parameters": [],
+										"src": "1798:2:0"
+									},
+									"src": "1769:32:0"
+								},
+								{
+									"documentation": {
+										"id": 30,
+										"nodeType": "StructuredDocumentation",
+										"src": "2033:105:0",
+										"text": "@dev Emitted when a token's level-up attempt is made but it has already reached its maximum level. "
+									},
+									"errorSelector": "921c7d5f",
+									"id": 32,
+									"name": "MaxLevelReached",
+									"nameLocation": "2149:15:0",
+									"nodeType": "ErrorDefinition",
+									"parameters": {
+										"id": 31,
+										"nodeType": "ParameterList",
+										"parameters": [],
+										"src": "2164:2:0"
+									},
+									"src": "2143:24:0"
+								},
+								{
+									"documentation": {
+										"id": 33,
+										"nodeType": "StructuredDocumentation",
+										"src": "2173:101:0",
+										"text": "@dev Emitted when a token's level-up attempt fails due to insufficient experience points (XP). "
+									},
+									"errorSelector": "dd100b93",
+									"id": 39,
+									"name": "NotEnoughXP",
+									"nameLocation": "2285:11:0",
+									"nodeType": "ErrorDefinition",
+									"parameters": {
+										"id": 38,
+										"nodeType": "ParameterList",
+										"parameters": [
+											{
+												"constant": false,
+												"id": 35,
+												"mutability": "mutable",
+												"name": "requiredXP",
+												"nameLocation": "2305:10:0",
+												"nodeType": "VariableDeclaration",
+												"scope": 39,
+												"src": "2297:18:0",
+												"stateVariable": false,
+												"storageLocation": "default",
+												"typeDescriptions": {
+													"typeIdentifier": "t_uint256",
+													"typeString": "uint256"
+												},
+												"typeName": {
+													"id": 34,
+													"name": "uint256",
+													"nodeType": "ElementaryTypeName",
+													"src": "2297:7:0",
+													"typeDescriptions": {
+														"typeIdentifier": "t_uint256",
+														"typeString": "uint256"
+													}
+												},
+												"visibility": "internal"
+											},
+											{
+												"constant": false,
+												"id": 37,
+												"mutability": "mutable",
+												"name": "currentXP",
+												"nameLocation": "2325:9:0",
+												"nodeType": "VariableDeclaration",
+												"scope": 39,
+												"src": "2317:17:0",
+												"stateVariable": false,
+												"storageLocation": "default",
+												"typeDescriptions": {
+													"typeIdentifier": "t_uint256",
+													"typeString": "uint256"
+												},
+												"typeName": {
+													"id": 36,
+													"name": "uint256",
+													"nodeType": "ElementaryTypeName",
+													"src": "2317:7:0",
+													"typeDescriptions": {
+														"typeIdentifier": "t_uint256",
+														"typeString": "uint256"
+													}
+												},
+												"visibility": "internal"
+											}
+										],
+										"src": "2296:39:0"
+									},
+									"src": "2279:57:0"
+								},
+								{
+									"documentation": {
+										"id": 40,
+										"nodeType": "StructuredDocumentation",
+										"src": "2342:101:0",
+										"text": "@dev Emitted when a token's level-down attempt is made but it is already at its minimum level. "
+									},
+									"errorSelector": "9f04c32a",
+									"id": 42,
+									"name": "AlreadyAtMinLevel",
+									"nameLocation": "2454:17:0",
+									"nodeType": "ErrorDefinition",
+									"parameters": {
+										"id": 41,
+										"nodeType": "ParameterList",
+										"parameters": [],
+										"src": "2471:2:0"
+									},
+									"src": "2448:26:0"
+								},
+								{
+									"documentation": {
+										"id": 43,
+										"nodeType": "StructuredDocumentation",
+										"src": "2706:108:0",
+										"text": "@dev Emitted when a function with `onlyOwner` is called by an address that is not the contract owner. "
+									},
+									"errorSelector": "de271cf5",
+									"id": 45,
+									"name": "UnauthorizedOwner",
+									"nameLocation": "2825:17:0",
+									"nodeType": "ErrorDefinition",
+									"parameters": {
+										"id": 44,
+										"nodeType": "ParameterList",
+										"parameters": [],
+										"src": "2842:2:0"
+									},
+									"src": "2819:26:0"
+								},
+								{
+									"documentation": {
+										"id": 46,
+										"nodeType": "StructuredDocumentation",
+										"src": "2851:116:0",
+										"text": "@dev Emitted when a function with an operator check is called by an address that is not an approved operator. "
+									},
+									"errorSelector": "740fbe61",
+									"id": 50,
+									"name": "UnauthorizedOperator",
+									"nameLocation": "2978:20:0",
+									"nodeType": "ErrorDefinition",
+									"parameters": {
+										"id": 49,
+										"nodeType": "ParameterList",
+										"parameters": [
+											{
+												"constant": false,
+												"id": 48,
+												"mutability": "mutable",
+												"name": "operator",
+												"nameLocation": "3007:8:0",
+												"nodeType": "VariableDeclaration",
+												"scope": 50,
+												"src": "2999:16:0",
+												"stateVariable": false,
+												"storageLocation": "default",
+												"typeDescriptions": {
+													"typeIdentifier": "t_address",
+													"typeString": "address"
+												},
+												"typeName": {
+													"id": 47,
+													"name": "address",
+													"nodeType": "ElementaryTypeName",
+													"src": "2999:7:0",
+													"stateMutability": "nonpayable",
+													"typeDescriptions": {
+														"typeIdentifier": "t_address",
+														"typeString": "address"
+													}
+												},
+												"visibility": "internal"
+											}
+										],
+										"src": "2998:18:0"
+									},
+									"src": "2972:45:0"
+								},
+								{
+									"errorSelector": "e6c4247b",
+									"id": 52,
+									"name": "InvalidAddress",
+									"nameLocation": "3029:14:0",
+									"nodeType": "ErrorDefinition",
+									"parameters": {
+										"id": 51,
+										"nodeType": "ParameterList",
+										"parameters": [],
+										"src": "3043:2:0"
+									},
+									"src": "3023:23:0"
+								},
+								{
+									"documentation": {
+										"id": 53,
+										"nodeType": "StructuredDocumentation",
+										"src": "3278:95:0",
+										"text": "@dev Emitted when the sent ETH value is less than the required amount for a transaction. "
+									},
+									"errorSelector": "b99e2ab7",
+									"id": 59,
+									"name": "InsufficientPayment",
+									"nameLocation": "3384:19:0",
+									"nodeType": "ErrorDefinition",
+									"parameters": {
+										"id": 58,
+										"nodeType": "ParameterList",
+										"parameters": [
+											{
+												"constant": false,
+												"id": 55,
+												"mutability": "mutable",
+												"name": "required",
+												"nameLocation": "3412:8:0",
+												"nodeType": "VariableDeclaration",
+												"scope": 59,
+												"src": "3404:16:0",
+												"stateVariable": false,
+												"storageLocation": "default",
+												"typeDescriptions": {
+													"typeIdentifier": "t_uint256",
+													"typeString": "uint256"
+												},
+												"typeName": {
+													"id": 54,
+													"name": "uint256",
+													"nodeType": "ElementaryTypeName",
+													"src": "3404:7:0",
+													"typeDescriptions": {
+														"typeIdentifier": "t_uint256",
+														"typeString": "uint256"
+													}
+												},
+												"visibility": "internal"
+											},
+											{
+												"constant": false,
+												"id": 57,
+												"mutability": "mutable",
+												"name": "sent",
+												"nameLocation": "3430:4:0",
+												"nodeType": "VariableDeclaration",
+												"scope": 59,
+												"src": "3422:12:0",
+												"stateVariable": false,
+												"storageLocation": "default",
+												"typeDescriptions": {
+													"typeIdentifier": "t_uint256",
+													"typeString": "uint256"
+												},
+												"typeName": {
+													"id": 56,
+													"name": "uint256",
+													"nodeType": "ElementaryTypeName",
+													"src": "3422:7:0",
+													"typeDescriptions": {
+														"typeIdentifier": "t_uint256",
+														"typeString": "uint256"
+													}
+												},
+												"visibility": "internal"
+											}
+										],
+										"src": "3403:32:0"
+									},
+									"src": "3378:58:0"
+								},
+								{
+									"documentation": {
+										"id": 60,
+										"nodeType": "StructuredDocumentation",
+										"src": "3442:106:0",
+										"text": "@dev Emitted when the contract's native token balance is insufficient for a withdrawal or transfer. "
+									},
+									"errorSelector": "786e0a99",
+									"id": 62,
+									"name": "InsufficientContractBalance",
+									"nameLocation": "3559:27:0",
+									"nodeType": "ErrorDefinition",
+									"parameters": {
+										"id": 61,
+										"nodeType": "ParameterList",
+										"parameters": [],
+										"src": "3586:2:0"
+									},
+									"src": "3553:36:0"
+								},
+								{
+									"documentation": {
+										"id": 63,
+										"nodeType": "StructuredDocumentation",
+										"src": "3595:108:0",
+										"text": "@dev Emitted when a requested amount for an operation (e.g., transfer, burn) is not fully authorized. "
+									},
+									"errorSelector": "9bd253b3",
+									"id": 69,
+									"name": "UnauthorizedAmount",
+									"nameLocation": "3714:18:0",
+									"nodeType": "ErrorDefinition",
+									"parameters": {
+										"id": 68,
+										"nodeType": "ParameterList",
+										"parameters": [
+											{
+												"constant": false,
+												"id": 65,
+												"mutability": "mutable",
+												"name": "totalAmount",
+												"nameLocation": "3741:11:0",
+												"nodeType": "VariableDeclaration",
+												"scope": 69,
+												"src": "3733:19:0",
+												"stateVariable": false,
+												"storageLocation": "default",
+												"typeDescriptions": {
+													"typeIdentifier": "t_uint256",
+													"typeString": "uint256"
+												},
+												"typeName": {
+													"id": 64,
+													"name": "uint256",
+													"nodeType": "ElementaryTypeName",
+													"src": "3733:7:0",
+													"typeDescriptions": {
+														"typeIdentifier": "t_uint256",
+														"typeString": "uint256"
+													}
+												},
+												"visibility": "internal"
+											},
+											{
+												"constant": false,
+												"id": 67,
+												"mutability": "mutable",
+												"name": "authorizedAmount",
+												"nameLocation": "3762:16:0",
+												"nodeType": "VariableDeclaration",
+												"scope": 69,
+												"src": "3754:24:0",
+												"stateVariable": false,
+												"storageLocation": "default",
+												"typeDescriptions": {
+													"typeIdentifier": "t_uint256",
+													"typeString": "uint256"
+												},
+												"typeName": {
+													"id": 66,
+													"name": "uint256",
+													"nodeType": "ElementaryTypeName",
+													"src": "3754:7:0",
+													"typeDescriptions": {
+														"typeIdentifier": "t_uint256",
+														"typeString": "uint256"
+													}
+												},
+												"visibility": "internal"
+											}
+										],
+										"src": "3732:47:0"
+									},
+									"src": "3708:72:0"
+								}
+							],
+							"scope": 71,
+							"src": "436:3346:0",
+							"usedErrors": [
+								5,
+								8,
+								11,
+								14,
+								17,
+								20,
+								23,
+								26,
+								29,
+								32,
+								39,
+								42,
+								45,
+								50,
+								52,
+								59,
+								62,
+								69
+							],
+							"usedEvents": []
+						}
+					],
+					"src": "32:3750:0"
+				},
+				"id": 0
+			}
+		}
+	}
+}

@@ -1,0 +1,190 @@
+{
+	"deploy": {
+		"VM:-": {
+			"linkReferences": {},
+			"autoDeployLib": true
+		},
+		"main:1": {
+			"linkReferences": {},
+			"autoDeployLib": true
+		},
+		"ropsten:3": {
+			"linkReferences": {},
+			"autoDeployLib": true
+		},
+		"rinkeby:4": {
+			"linkReferences": {},
+			"autoDeployLib": true
+		},
+		"kovan:42": {
+			"linkReferences": {},
+			"autoDeployLib": true
+		},
+		"goerli:5": {
+			"linkReferences": {},
+			"autoDeployLib": true
+		},
+		"Custom": {
+			"linkReferences": {},
+			"autoDeployLib": true
+		}
+	},
+	"data": {
+		"bytecode": {
+			"functionDebugData": {},
+			"generatedSources": [],
+			"linkReferences": {},
+			"object": "60556032600b8282823980515f1a607314602657634e487b7160e01b5f525f60045260245ffd5b305f52607381538281f3fe730000000000000000000000000000000000000000301460806040525f5ffdfea264697066735822122084624a2b27a50406606cb8da1fded21c8e09b444e6d542b3d96ae37ccc94ddb064736f6c634300081e0033",
+			"opcodes": "PUSH1 0x55 PUSH1 0x32 PUSH1 0xB DUP3 DUP3 DUP3 CODECOPY DUP1 MLOAD PUSH0 BYTE PUSH1 0x73 EQ PUSH1 0x26 JUMPI PUSH4 0x4E487B71 PUSH1 0xE0 SHL PUSH0 MSTORE PUSH0 PUSH1 0x4 MSTORE PUSH1 0x24 PUSH0 REVERT JUMPDEST ADDRESS PUSH0 MSTORE PUSH1 0x73 DUP2 MSTORE8 DUP3 DUP2 RETURN INVALID PUSH20 0x0 ADDRESS EQ PUSH1 0x80 PUSH1 0x40 MSTORE PUSH0 PUSH0 REVERT INVALID LOG2 PUSH5 0x6970667358 0x22 SLT KECCAK256 DUP5 PUSH3 0x4A2B27 0xA5 DIV MOD PUSH1 0x6C 0xB8 0xDA 0x1F 0xDE 0xD2 SHR DUP15 MULMOD 0xB4 PREVRANDAO DUPN 0xD5 TIMESTAMP 0xB3 0xD9 PUSH11 0xE37CCC94DDB064736F6C63 NUMBER STOP ADDMOD 0x1E STOP CALLER ",
+			"sourceMap": "436:3346:0:-:0;;;;;;;;;;;;;;;-1:-1:-1;;;436:3346:0;;;;;;;;;;;;;;;;;"
+		},
+		"deployedBytecode": {
+			"functionDebugData": {},
+			"generatedSources": [],
+			"immutableReferences": {},
+			"linkReferences": {},
+			"object": "730000000000000000000000000000000000000000301460806040525f5ffdfea264697066735822122084624a2b27a50406606cb8da1fded21c8e09b444e6d542b3d96ae37ccc94ddb064736f6c634300081e0033",
+			"opcodes": "PUSH20 0x0 ADDRESS EQ PUSH1 0x80 PUSH1 0x40 MSTORE PUSH0 PUSH0 REVERT INVALID LOG2 PUSH5 0x6970667358 0x22 SLT KECCAK256 DUP5 PUSH3 0x4A2B27 0xA5 DIV MOD PUSH1 0x6C 0xB8 0xDA 0x1F 0xDE 0xD2 SHR DUP15 MULMOD 0xB4 PREVRANDAO DUPN 0xD5 TIMESTAMP 0xB3 0xD9 PUSH11 0xE37CCC94DDB064736F6C63 NUMBER STOP ADDMOD 0x1E STOP CALLER ",
+			"sourceMap": "436:3346:0:-:0;;;;;;;;"
+		},
+		"gasEstimates": {
+			"creation": {
+				"codeDepositCost": "17000",
+				"executionCost": "96",
+				"totalCost": "17096"
+			}
+		},
+		"methodIdentifiers": {}
+	},
+	"abi": [
+		{
+			"inputs": [],
+			"name": "AlreadyAtMinLevel",
+			"type": "error"
+		},
+		{
+			"inputs": [],
+			"name": "CooldownPeriodNotPassed",
+			"type": "error"
+		},
+		{
+			"inputs": [],
+			"name": "InsufficientContractBalance",
+			"type": "error"
+		},
+		{
+			"inputs": [
+				{
+					"internalType": "uint256",
+					"name": "required",
+					"type": "uint256"
+				},
+				{
+					"internalType": "uint256",
+					"name": "sent",
+					"type": "uint256"
+				}
+			],
+			"name": "InsufficientPayment",
+			"type": "error"
+		},
+		{
+			"inputs": [],
+			"name": "InvalidAddress",
+			"type": "error"
+		},
+		{
+			"inputs": [],
+			"name": "InvalidPhase",
+			"type": "error"
+		},
+		{
+			"inputs": [],
+			"name": "MaxLevelReached",
+			"type": "error"
+		},
+		{
+			"inputs": [],
+			"name": "MaxMintExceeded",
+			"type": "error"
+		},
+		{
+			"inputs": [],
+			"name": "MaxMintPerWalletExceeded",
+			"type": "error"
+		},
+		{
+			"inputs": [],
+			"name": "MaxSupplyExceeded",
+			"type": "error"
+		},
+		{
+			"inputs": [],
+			"name": "NotAMemberCardHolder",
+			"type": "error"
+		},
+		{
+			"inputs": [
+				{
+					"internalType": "uint256",
+					"name": "requiredXP",
+					"type": "uint256"
+				},
+				{
+					"internalType": "uint256",
+					"name": "currentXP",
+					"type": "uint256"
+				}
+			],
+			"name": "NotEnoughXP",
+			"type": "error"
+		},
+		{
+			"inputs": [],
+			"name": "NotWhitelisted",
+			"type": "error"
+		},
+		{
+			"inputs": [],
+			"name": "PhaseNotActive",
+			"type": "error"
+		},
+		{
+			"inputs": [],
+			"name": "PhaseSupplyExceeded",
+			"type": "error"
+		},
+		{
+			"inputs": [
+				{
+					"internalType": "uint256",
+					"name": "totalAmount",
+					"type": "uint256"
+				},
+				{
+					"internalType": "uint256",
+					"name": "authorizedAmount",
+					"type": "uint256"
+				}
+			],
+			"name": "UnauthorizedAmount",
+			"type": "error"
+		},
+		{
+			"inputs": [
+				{
+					"internalType": "address",
+					"name": "operator",
+					"type": "address"
+				}
+			],
+			"name": "UnauthorizedOperator",
+			"type": "error"
+		},
+		{
+			"inputs": [],
+			"name": "UnauthorizedOwner",
+			"type": "error"
+		}
+	]
+}

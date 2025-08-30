@@ -1,0 +1,362 @@
+{
+	"id": "fd66c186a3d7ce56f59960ab40add4db",
+	"_format": "hh-sol-build-info-1",
+	"solcVersion": "0.8.30",
+	"solcLongVersion": "0.8.30+commit.73712a01",
+	"input": {
+		"language": "Solidity",
+		"sources": {
+			"_event.sol": {
+				"content": "// SPDX-License-Identifier: MIT\r\npragma solidity ^0.8.24;\r\n\r\nevent Log(string message);\r\nevent claimPerTokenUpdated(uint256, address);\r\nevent Claimed(address addr, uint256 nextClaim);\r\nevent claimPerTokenUpdated(uint256 newVal);\r\nevent claimTokenUpdated(address newToken);"
+			}
+		},
+		"settings": {
+			"optimizer": {
+				"enabled": true,
+				"runs": 200
+			},
+			"outputSelection": {
+				"*": {
+					"": [
+						"ast"
+					],
+					"*": [
+						"abi",
+						"metadata",
+						"devdoc",
+						"userdoc",
+						"storageLayout",
+						"evm.legacyAssembly",
+						"evm.bytecode",
+						"evm.deployedBytecode",
+						"evm.methodIdentifiers",
+						"evm.gasEstimates",
+						"evm.assembly"
+					]
+				}
+			},
+			"remappings": []
+		}
+	},
+	"output": {
+		"sources": {
+			"_event.sol": {
+				"ast": {
+					"absolutePath": "_event.sol",
+					"exportedSymbols": {
+						"Claimed": [
+							17
+						],
+						"Log": [
+							5
+						],
+						"claimPerTokenUpdated": [
+							11,
+							21
+						],
+						"claimTokenUpdated": [
+							25
+						]
+					},
+					"id": 26,
+					"license": "MIT",
+					"nodeType": "SourceUnit",
+					"nodes": [
+						{
+							"id": 1,
+							"literals": [
+								"solidity",
+								"^",
+								"0.8",
+								".24"
+							],
+							"nodeType": "PragmaDirective",
+							"src": "33:24:0"
+						},
+						{
+							"anonymous": false,
+							"eventSelector": "cf34ef537ac33ee1ac626ca1587a0a7e8e51561e5514f8cb36afa1c5102b3bab",
+							"id": 5,
+							"name": "Log",
+							"nameLocation": "67:3:0",
+							"nodeType": "EventDefinition",
+							"parameters": {
+								"id": 4,
+								"nodeType": "ParameterList",
+								"parameters": [
+									{
+										"constant": false,
+										"id": 3,
+										"indexed": false,
+										"mutability": "mutable",
+										"name": "message",
+										"nameLocation": "78:7:0",
+										"nodeType": "VariableDeclaration",
+										"scope": 5,
+										"src": "71:14:0",
+										"stateVariable": false,
+										"storageLocation": "default",
+										"typeDescriptions": {
+											"typeIdentifier": "t_string_memory_ptr",
+											"typeString": "string"
+										},
+										"typeName": {
+											"id": 2,
+											"name": "string",
+											"nodeType": "ElementaryTypeName",
+											"src": "71:6:0",
+											"typeDescriptions": {
+												"typeIdentifier": "t_string_storage_ptr",
+												"typeString": "string"
+											}
+										},
+										"visibility": "internal"
+									}
+								],
+								"src": "70:16:0"
+							},
+							"src": "61:26:0"
+						},
+						{
+							"anonymous": false,
+							"eventSelector": "b1b0dc54cf50e9392c091fe2fdec83dd94fdfafcd8a854a1c088848454f9fa2e",
+							"id": 11,
+							"name": "claimPerTokenUpdated",
+							"nameLocation": "95:20:0",
+							"nodeType": "EventDefinition",
+							"parameters": {
+								"id": 10,
+								"nodeType": "ParameterList",
+								"parameters": [
+									{
+										"constant": false,
+										"id": 7,
+										"indexed": false,
+										"mutability": "mutable",
+										"name": "",
+										"nameLocation": "-1:-1:-1",
+										"nodeType": "VariableDeclaration",
+										"scope": 11,
+										"src": "116:7:0",
+										"stateVariable": false,
+										"storageLocation": "default",
+										"typeDescriptions": {
+											"typeIdentifier": "t_uint256",
+											"typeString": "uint256"
+										},
+										"typeName": {
+											"id": 6,
+											"name": "uint256",
+											"nodeType": "ElementaryTypeName",
+											"src": "116:7:0",
+											"typeDescriptions": {
+												"typeIdentifier": "t_uint256",
+												"typeString": "uint256"
+											}
+										},
+										"visibility": "internal"
+									},
+									{
+										"constant": false,
+										"id": 9,
+										"indexed": false,
+										"mutability": "mutable",
+										"name": "",
+										"nameLocation": "-1:-1:-1",
+										"nodeType": "VariableDeclaration",
+										"scope": 11,
+										"src": "125:7:0",
+										"stateVariable": false,
+										"storageLocation": "default",
+										"typeDescriptions": {
+											"typeIdentifier": "t_address",
+											"typeString": "address"
+										},
+										"typeName": {
+											"id": 8,
+											"name": "address",
+											"nodeType": "ElementaryTypeName",
+											"src": "125:7:0",
+											"stateMutability": "nonpayable",
+											"typeDescriptions": {
+												"typeIdentifier": "t_address",
+												"typeString": "address"
+											}
+										},
+										"visibility": "internal"
+									}
+								],
+								"src": "115:18:0"
+							},
+							"src": "89:45:0"
+						},
+						{
+							"anonymous": false,
+							"eventSelector": "d8138f8a3f377c5259ca548e70e4c2de94f129f5a11036a15b69513cba2b426a",
+							"id": 17,
+							"name": "Claimed",
+							"nameLocation": "142:7:0",
+							"nodeType": "EventDefinition",
+							"parameters": {
+								"id": 16,
+								"nodeType": "ParameterList",
+								"parameters": [
+									{
+										"constant": false,
+										"id": 13,
+										"indexed": false,
+										"mutability": "mutable",
+										"name": "addr",
+										"nameLocation": "158:4:0",
+										"nodeType": "VariableDeclaration",
+										"scope": 17,
+										"src": "150:12:0",
+										"stateVariable": false,
+										"storageLocation": "default",
+										"typeDescriptions": {
+											"typeIdentifier": "t_address",
+											"typeString": "address"
+										},
+										"typeName": {
+											"id": 12,
+											"name": "address",
+											"nodeType": "ElementaryTypeName",
+											"src": "150:7:0",
+											"stateMutability": "nonpayable",
+											"typeDescriptions": {
+												"typeIdentifier": "t_address",
+												"typeString": "address"
+											}
+										},
+										"visibility": "internal"
+									},
+									{
+										"constant": false,
+										"id": 15,
+										"indexed": false,
+										"mutability": "mutable",
+										"name": "nextClaim",
+										"nameLocation": "172:9:0",
+										"nodeType": "VariableDeclaration",
+										"scope": 17,
+										"src": "164:17:0",
+										"stateVariable": false,
+										"storageLocation": "default",
+										"typeDescriptions": {
+											"typeIdentifier": "t_uint256",
+											"typeString": "uint256"
+										},
+										"typeName": {
+											"id": 14,
+											"name": "uint256",
+											"nodeType": "ElementaryTypeName",
+											"src": "164:7:0",
+											"typeDescriptions": {
+												"typeIdentifier": "t_uint256",
+												"typeString": "uint256"
+											}
+										},
+										"visibility": "internal"
+									}
+								],
+								"src": "149:33:0"
+							},
+							"src": "136:47:0"
+						},
+						{
+							"anonymous": false,
+							"eventSelector": "8dde6035c29b61116707d73668eff2fc1981f9ac1099b6917e5ea982bba32189",
+							"id": 21,
+							"name": "claimPerTokenUpdated",
+							"nameLocation": "191:20:0",
+							"nodeType": "EventDefinition",
+							"parameters": {
+								"id": 20,
+								"nodeType": "ParameterList",
+								"parameters": [
+									{
+										"constant": false,
+										"id": 19,
+										"indexed": false,
+										"mutability": "mutable",
+										"name": "newVal",
+										"nameLocation": "220:6:0",
+										"nodeType": "VariableDeclaration",
+										"scope": 21,
+										"src": "212:14:0",
+										"stateVariable": false,
+										"storageLocation": "default",
+										"typeDescriptions": {
+											"typeIdentifier": "t_uint256",
+											"typeString": "uint256"
+										},
+										"typeName": {
+											"id": 18,
+											"name": "uint256",
+											"nodeType": "ElementaryTypeName",
+											"src": "212:7:0",
+											"typeDescriptions": {
+												"typeIdentifier": "t_uint256",
+												"typeString": "uint256"
+											}
+										},
+										"visibility": "internal"
+									}
+								],
+								"src": "211:16:0"
+							},
+							"src": "185:43:0"
+						},
+						{
+							"anonymous": false,
+							"eventSelector": "0af1ad4d296c502ea2e9890a35865d2cf626e7566b45f6eee3c85384b8577b5d",
+							"id": 25,
+							"name": "claimTokenUpdated",
+							"nameLocation": "236:17:0",
+							"nodeType": "EventDefinition",
+							"parameters": {
+								"id": 24,
+								"nodeType": "ParameterList",
+								"parameters": [
+									{
+										"constant": false,
+										"id": 23,
+										"indexed": false,
+										"mutability": "mutable",
+										"name": "newToken",
+										"nameLocation": "262:8:0",
+										"nodeType": "VariableDeclaration",
+										"scope": 25,
+										"src": "254:16:0",
+										"stateVariable": false,
+										"storageLocation": "default",
+										"typeDescriptions": {
+											"typeIdentifier": "t_address",
+											"typeString": "address"
+										},
+										"typeName": {
+											"id": 22,
+											"name": "address",
+											"nodeType": "ElementaryTypeName",
+											"src": "254:7:0",
+											"stateMutability": "nonpayable",
+											"typeDescriptions": {
+												"typeIdentifier": "t_address",
+												"typeString": "address"
+											}
+										},
+										"visibility": "internal"
+									}
+								],
+								"src": "253:18:0"
+							},
+							"src": "230:42:0"
+						}
+					],
+					"src": "33:239:0"
+				},
+				"id": 0
+			}
+		}
+	}
+}

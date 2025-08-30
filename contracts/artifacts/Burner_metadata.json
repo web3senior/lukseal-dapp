@@ -1,0 +1,69 @@
+{
+	"compiler": {
+		"version": "0.8.30+commit.73712a01"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "lsp7Token",
+						"type": "address"
+					},
+					{
+						"internalType": "address",
+						"name": "from",
+						"type": "address"
+					},
+					{
+						"internalType": "uint256",
+						"name": "amount",
+						"type": "uint256"
+					}
+				],
+				"name": "burnLSP7Tokens",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			}
+		],
+		"devdoc": {
+			"kind": "dev",
+			"methods": {},
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {},
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"burnlsp7sample.sol": "Burner"
+		},
+		"evmVersion": "prague",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": true,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"burnlsp7sample.sol": {
+			"keccak256": "0x24cb285ee616368844de9c07b1140a3605c0fba1c8f76fc85ae84b7945e8a59a",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://8e1004d49e0929505fd841cb6c76b79509140f9585f0f8c7efc54642cbbc621a",
+				"dweb:/ipfs/QmPFTPXPo5jFwqFFnNGNNwZvW3wMHT3H895NN5qvhsjuHu"
+			]
+		}
+	},
+	"version": 1
+}

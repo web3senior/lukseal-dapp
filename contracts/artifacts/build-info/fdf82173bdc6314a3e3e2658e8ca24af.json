@@ -1,0 +1,231 @@
+{
+	"id": "fdf82173bdc6314a3e3e2658e8ca24af",
+	"_format": "hh-sol-build-info-1",
+	"solcVersion": "0.8.30",
+	"solcLongVersion": "0.8.30+commit.73712a01",
+	"input": {
+		"language": "Solidity",
+		"sources": {
+			"_error.sol": {
+				"content": "// SPDX-License-Identifier: MIT\r\npragma solidity ^0.8.20;\r\n\r\nerror Unauthorized();\r\nerror NotAuthorizedAmount(uint256 totalAmount, uint256 authorizedAmount);\r\nerror SupplyLimitExceeded(uint256 totalSupply, uint256 tokenSupplyCap);"
+			}
+		},
+		"settings": {
+			"optimizer": {
+				"enabled": true,
+				"runs": 200
+			},
+			"outputSelection": {
+				"*": {
+					"": [
+						"ast"
+					],
+					"*": [
+						"abi",
+						"metadata",
+						"devdoc",
+						"userdoc",
+						"storageLayout",
+						"evm.legacyAssembly",
+						"evm.bytecode",
+						"evm.deployedBytecode",
+						"evm.methodIdentifiers",
+						"evm.gasEstimates",
+						"evm.assembly"
+					]
+				}
+			},
+			"remappings": []
+		}
+	},
+	"output": {
+		"sources": {
+			"_error.sol": {
+				"ast": {
+					"absolutePath": "_error.sol",
+					"exportedSymbols": {
+						"NotAuthorizedAmount": [
+							9
+						],
+						"SupplyLimitExceeded": [
+							15
+						],
+						"Unauthorized": [
+							3
+						]
+					},
+					"id": 16,
+					"license": "MIT",
+					"nodeType": "SourceUnit",
+					"nodes": [
+						{
+							"id": 1,
+							"literals": [
+								"solidity",
+								"^",
+								"0.8",
+								".20"
+							],
+							"nodeType": "PragmaDirective",
+							"src": "33:24:0"
+						},
+						{
+							"errorSelector": "82b42900",
+							"id": 3,
+							"name": "Unauthorized",
+							"nameLocation": "67:12:0",
+							"nodeType": "ErrorDefinition",
+							"parameters": {
+								"id": 2,
+								"nodeType": "ParameterList",
+								"parameters": [],
+								"src": "79:2:0"
+							},
+							"src": "61:21:0"
+						},
+						{
+							"errorSelector": "a24f8be9",
+							"id": 9,
+							"name": "NotAuthorizedAmount",
+							"nameLocation": "90:19:0",
+							"nodeType": "ErrorDefinition",
+							"parameters": {
+								"id": 8,
+								"nodeType": "ParameterList",
+								"parameters": [
+									{
+										"constant": false,
+										"id": 5,
+										"mutability": "mutable",
+										"name": "totalAmount",
+										"nameLocation": "118:11:0",
+										"nodeType": "VariableDeclaration",
+										"scope": 9,
+										"src": "110:19:0",
+										"stateVariable": false,
+										"storageLocation": "default",
+										"typeDescriptions": {
+											"typeIdentifier": "t_uint256",
+											"typeString": "uint256"
+										},
+										"typeName": {
+											"id": 4,
+											"name": "uint256",
+											"nodeType": "ElementaryTypeName",
+											"src": "110:7:0",
+											"typeDescriptions": {
+												"typeIdentifier": "t_uint256",
+												"typeString": "uint256"
+											}
+										},
+										"visibility": "internal"
+									},
+									{
+										"constant": false,
+										"id": 7,
+										"mutability": "mutable",
+										"name": "authorizedAmount",
+										"nameLocation": "139:16:0",
+										"nodeType": "VariableDeclaration",
+										"scope": 9,
+										"src": "131:24:0",
+										"stateVariable": false,
+										"storageLocation": "default",
+										"typeDescriptions": {
+											"typeIdentifier": "t_uint256",
+											"typeString": "uint256"
+										},
+										"typeName": {
+											"id": 6,
+											"name": "uint256",
+											"nodeType": "ElementaryTypeName",
+											"src": "131:7:0",
+											"typeDescriptions": {
+												"typeIdentifier": "t_uint256",
+												"typeString": "uint256"
+											}
+										},
+										"visibility": "internal"
+									}
+								],
+								"src": "109:47:0"
+							},
+							"src": "84:73:0"
+						},
+						{
+							"errorSelector": "3dc729a7",
+							"id": 15,
+							"name": "SupplyLimitExceeded",
+							"nameLocation": "165:19:0",
+							"nodeType": "ErrorDefinition",
+							"parameters": {
+								"id": 14,
+								"nodeType": "ParameterList",
+								"parameters": [
+									{
+										"constant": false,
+										"id": 11,
+										"mutability": "mutable",
+										"name": "totalSupply",
+										"nameLocation": "193:11:0",
+										"nodeType": "VariableDeclaration",
+										"scope": 15,
+										"src": "185:19:0",
+										"stateVariable": false,
+										"storageLocation": "default",
+										"typeDescriptions": {
+											"typeIdentifier": "t_uint256",
+											"typeString": "uint256"
+										},
+										"typeName": {
+											"id": 10,
+											"name": "uint256",
+											"nodeType": "ElementaryTypeName",
+											"src": "185:7:0",
+											"typeDescriptions": {
+												"typeIdentifier": "t_uint256",
+												"typeString": "uint256"
+											}
+										},
+										"visibility": "internal"
+									},
+									{
+										"constant": false,
+										"id": 13,
+										"mutability": "mutable",
+										"name": "tokenSupplyCap",
+										"nameLocation": "214:14:0",
+										"nodeType": "VariableDeclaration",
+										"scope": 15,
+										"src": "206:22:0",
+										"stateVariable": false,
+										"storageLocation": "default",
+										"typeDescriptions": {
+											"typeIdentifier": "t_uint256",
+											"typeString": "uint256"
+										},
+										"typeName": {
+											"id": 12,
+											"name": "uint256",
+											"nodeType": "ElementaryTypeName",
+											"src": "206:7:0",
+											"typeDescriptions": {
+												"typeIdentifier": "t_uint256",
+												"typeString": "uint256"
+											}
+										},
+										"visibility": "internal"
+									}
+								],
+								"src": "184:45:0"
+							},
+							"src": "159:71:0"
+						}
+					],
+					"src": "33:197:0"
+				},
+				"id": 0
+			}
+		}
+	}
+}
