@@ -14,11 +14,6 @@ import moment from 'moment-timezone'
 import { useUpProvider } from '@/contexts/UpProvider'
 import styles from './page.module.scss'
 
-const web3 = new Web3(window.lukso)
-const contract = new web3.eth.Contract(ABI, process.env.NEXT_PUBLIC_CONTRACT)
-const contractFish = new web3.eth.Contract(ABILSP7, process.env.NEXT_PUBLIC_CONTRACT_FISH)
-const _ = web3.utils
-
 export default function Page() {
   const [isLoading, setIsLoading] = useState(false)
   const [isInitialized, setIsInitialized] = useState()
@@ -43,10 +38,17 @@ export default function Page() {
   const [LYXBalance, setLYXBalance] = useState()
   const [fishBalance, setFishBalance] = useState()
   const [selectedPhase, setSelectedPhase] = useState()
+  const [walletBalance, setWalletBalance] = useState(0)
+  const [walletFishBalance, setWalletFishBalance] = useState(0)
   const [LYX, setLYX] = useState(0)
   const [level, setlevel] = useState()
   const auth = useUpProvider()
-  const { web3, readOnlyContract } = initContract()
+  const { readOnlyContract } = initContract()
+
+  const web3 = new Web3(auth.provider)
+  const contract = new web3.eth.Contract(ABI, process.env.NEXT_PUBLIC_CONTRACT)
+  const contractFish = new web3.eth.Contract(ABILSP7, process.env.NEXT_PUBLIC_CONTRACT_FISH)
+  const _ = web3.utils
 
   const fetchData = async (dataURL) => {
     let requestOptions = {
@@ -739,6 +741,26 @@ export default function Page() {
   return (
     <div className={`${styles.page} ms-motion-slideDownIn`}>
       <div className={`__container`} data-width={`xlarge`}>
+        <div className={`grid grid--fit grid--gap-1 w-100`} style={{ '--data-width': `150px` }}>
+          {auth.walletConnected && (
+            <>
+              <div className="card">
+                <div className={`card__body d-f-c flex-column`}>
+                  <WalletBalance />
+                  <small>Wallet LYX Balance</small>
+                </div>
+              </div>
+
+              <div className="card">
+                <div className={`card__body d-f-c flex-column`}>
+                  <WalletFishBalance />
+                  <small>Wallet Fish Balance</small>
+                </div>
+              </div>
+            </>
+          )}
+        </div>
+
         <div className="card" data-shadow={'none'}>
           <button disabled={isInitialized} onClick={(e) => initialize(e)} className="btn" style={{ width: `100%` }}>
             {isInitialized ? 'Already initialized' : 'Initialize'}
@@ -923,7 +945,7 @@ export default function Page() {
                       Background: <b>{item.background}</b>
                     </small>
                     <small title="Max Mint Per Wallet">
-                      MMPW: <b>{web3.utils.toNumber(item.maxMintPerWallet)}</b>
+                      MMPW: <b>{web3.utils.toNumber(item.maxMintPerWallet)} seals</b>
                     </small>
                     <small>
                       Price:
@@ -946,7 +968,12 @@ export default function Page() {
               <form onSubmit={(e) => updatePhase(e)} className={`form d-flex flex-column`} style={{ rowGap: '1rem' }}>
                 <select name="" id="" onChange={(e) => setSelectedPhase(e.target.value)}>
                   <option value="">Select phase</option>
-                  {phases && phases.map((item, i) => <option value={i + 1}>phase{i + 1}</option>)}
+                  {phases &&
+                    phases.map((item, i) => (
+                      <option key={i} value={i + 1}>
+                        phase{i + 1}
+                      </option>
+                    ))}
                 </select>
 
                 {selectedPhase && (
@@ -1096,4 +1123,50 @@ export default function Page() {
       </div>
     </div>
   )
+}
+
+const WalletBalance = () => {
+  const [balance, setBalance] = useState()
+  const auth = useUpProvider()
+  const web3 = new Web3(auth.provider)
+  const contract = new web3.eth.Contract(ABI, process.env.NEXT_PUBLIC_CONTRACT)
+  const contractFish = new web3.eth.Contract(ABILSP7, process.env.NEXT_PUBLIC_CONTRACT_FISH)
+  const _ = web3.utils
+
+  const getWalletBalance = async (wallet) => {
+    const balance = await web3.eth.getBalance(wallet)
+    return parseFloat(web3.utils.fromWei(balance, `ether`)).toFixed(2)
+  }
+
+  useEffect(() => {
+    getWalletBalance(auth.accounts[0]).then((result) => {
+      setBalance(result)
+    })
+  }, [])
+
+  if (!balance) return <>0</>
+  return <b>{new Intl.NumberFormat().format(balance)}</b>
+}
+
+const WalletFishBalance = () => {
+  const [balance, setBalance] = useState()
+  const auth = useUpProvider()
+  const web3 = new Web3(auth.provider)
+  const contract = new web3.eth.Contract(ABI, process.env.NEXT_PUBLIC_CONTRACT)
+  const contractFish = new web3.eth.Contract(ABILSP7, process.env.NEXT_PUBLIC_CONTRACT_FISH)
+  const _ = web3.utils
+
+  const getWalletFishBalance = async (wallet) => {
+    const balance = await contractFish.methods.balanceOf(wallet).call()
+    return parseFloat(web3.utils.fromWei(balance, `ether`)).toFixed(2)
+  }
+
+  useEffect(() => {
+    getWalletFishBalance(auth.accounts[0]).then((result) => {
+      setBalance(result)
+    })
+  }, [])
+
+  if (!balance) return <>0</>
+  return <b>{new Intl.NumberFormat().format(balance)}</b>
 }
