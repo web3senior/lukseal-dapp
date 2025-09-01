@@ -248,7 +248,7 @@ export default function Page() {
     let requestOptions = {
       method: 'GET',
       redirect: 'follow',
-      mode: 'no-cors' 
+      mode: 'no-cors',
     }
     const response = await fetch(`${dataURL}`, requestOptions)
     if (!response.ok) throw new Response('Failed to get data', { status: 500 })
@@ -258,38 +258,34 @@ export default function Page() {
   const sleep = (ms) => new Promise((r) => setTimeout(r, ms))
 
   const metadataVerifiableURL = async (json, CID) => {
-   
-      const verfiableUriIdentifier = '0x0000'
-      const verificationMethod = web3.utils.keccak256('keccak256(utf8)').substr(0, 10)
-      const verificationData = web3.utils.keccak256(JSON.stringify(json)) // json or res
-      //console.log(verificationData)
-      //return
-      const verificationDataLength = web3.utils.padLeft(web3.utils.numberToHex(verificationData.substring(2).length / 2), 4)
-      const url = web3.utils.utf8ToHex(`ipfs://${CID}`)
-      const VerfiableURI = verfiableUriIdentifier + verificationMethod.substring(2) + verificationDataLength.substring(2) + verificationData.substring(2) + url.substring(2)
-      console.log(`VerfiableURI => `, VerfiableURI)
-      return VerfiableURI
-
+    const verfiableUriIdentifier = '0x0000'
+    const verificationMethod = web3.utils.keccak256('keccak256(utf8)').substr(0, 10)
+    const verificationData = web3.utils.keccak256(JSON.stringify(json)) // json or res
+    //console.log(verificationData)
+    //return
+    const verificationDataLength = web3.utils.padLeft(web3.utils.numberToHex(verificationData.substring(2).length / 2), 4)
+    const url = web3.utils.utf8ToHex(`ipfs://${CID}`)
+    const VerfiableURI = verfiableUriIdentifier + verificationMethod.substring(2) + verificationDataLength.substring(2) + verificationData.substring(2) + url.substring(2)
+    console.log(`VerfiableURI => `, VerfiableURI)
+    return VerfiableURI
   }
 
-    const approve = async (e) => {
-
+  const approve = async (e) => {
     const t = (e.target.innerText = `Waiting...`)
 
     return contractFish.methods
-      .authorizeOperator(process.env.NEXT_PUBLIC_CONTRACT, web3.utils.toWei(100000,`ether`), '0x')
+      .authorizeOperator(process.env.NEXT_PUBLIC_CONTRACT, web3.utils.toWei(100000, `ether`), '0x')
       .send({
         from: auth.accounts[0],
         value: 0,
       })
-  .then((res) => {
-          console.log(res)
+      .then((res) => {
+        console.log(res)
         e.target.innerText = `Approve`
         toast.dismiss(t)
         // Fetch tokens
       })
-
-    }
+  }
 
   const mint = async (e) => {
     e.target.disabled = true
@@ -635,7 +631,7 @@ export default function Page() {
           Mint (in mint I will send the level0 metadata always) the real metadata will send on levelup and down
         </button>
 
-                <button className="btn mt-10 mb-20 w-100" onClick={(e) => approve(e)}>
+        <button className="btn mt-10 mb-20 w-100" onClick={(e) => approve(e)}>
           Approve
         </button>
 

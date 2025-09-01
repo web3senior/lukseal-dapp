@@ -15,16 +15,74 @@
     padding-top: 1rem;
   }
 }
-
-.pfp {
-  border:1px solid red;
-    width: 32px;
-    height: 32px;
-  img {
-    width: 32px;
-    height: 32px;
-  }
+.seal {
+  width: 400px;
 }
+.lvl {
+  padding: 2px 6px;
+  gap: 10px;
+  height: 21px;
+  background: #c6d4da;
+  border: 1px solid #a4b5bd;
+  border-radius: 999px;
+  font-weight: bold;
+}
+
+.token {
+  position: relative;
+}
+
+.tokenId {
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  background: rgba(223, 39, 255, 0.2);
+  color: #fff;
+  padding: 2px 6px;
+  border-radius: 8px;
+  font-size: 10px;
+  font-weight: bold;
+  z-index: 10;
+
+  list-style-type: disc;
+  padding-left: 1.5rem;
+}
+.token {
+    width: 100%;
+    position: relative;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    background: var(--gray-alpha-100);
+    &:hover {
+      background: var(--gray-alpha-200);
+    }
+
+    img {
+      object-fit: contain;
+    }
+}
+
+.traits {
+  margin-top: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  gap: 6px;
+max-width: 400px;
+  li {
+    background: var(--gray-alpha-100);
+    border: 1px solid var(--gray-alpha-200);
+    border-radius: 8px;
+    padding: 4px 8px;
+    font-size: 12px;
+    font-weight: 500;
+
+    span {
+      font-weight: bold;
+    }
+  } 
+}
+
 
 @media (prefers-color-scheme: dark) {
   .page {
