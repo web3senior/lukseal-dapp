@@ -2771,38 +2771,6 @@
 				"dweb:/ipfs/QmQqew3mDuyHCBdd4v1JiwRiKEbzk3LeHchzTHSdyhYg5b"
 			]
 		},
-		"@lukso/lsp-smart-contracts/contracts/LSP26FollowerSystem/ILSP26FollowerSystem.sol": {
-			"keccak256": "0x1dca0d7a7666f794dc78c2ca46c4cf912a581c0966f1432d73d9f6cbfed56ca0",
-			"license": "Apache-2.0",
-			"urls": [
-				"bzz-raw://b9ffa3d057132a1515c3e9d9977063366f60409730ca8dda28641121a7f7e56a",
-				"dweb:/ipfs/QmboV7YeAoUXByTCNXGKzNUPpw93yqTc4hcq9sU4F79K3M"
-			]
-		},
-		"@lukso/lsp-smart-contracts/contracts/LSP7DigitalAsset/ILSP7DigitalAsset.sol": {
-			"keccak256": "0x1500da59b41e37677458dcc3652bb5a72f58a7920dbc41f6cf60f7beadd6731d",
-			"license": "Apache-2.0",
-			"urls": [
-				"bzz-raw://e5bd2b8d469213eae3cd7013dc05b4c37ec183977dddb2b659ab8f9b852d7b26",
-				"dweb:/ipfs/QmbNt4JEugWbRRCAge1HCM2j4HExEZzGRsgDmiATZoYvp6"
-			]
-		},
-		"@lukso/lsp-smart-contracts/contracts/LSP8IdentifiableDigitalAsset/ILSP8IdentifiableDigitalAsset.sol": {
-			"keccak256": "0xf24c0f30ffdc2540755ae809effdba80029f8418e2b0c9f72b878aad50ba1b72",
-			"license": "Apache-2.0",
-			"urls": [
-				"bzz-raw://599f63e424232f92d566b3294729d24b3e06e33a7b721590600e721a728919e4",
-				"dweb:/ipfs/QmW4DX8gxXpPGrZdEk2iwQJMHyVgBaEwbb3QZkLyowMCCD"
-			]
-		},
-		"@lukso/lsp-smart-contracts/contracts/LSP8IdentifiableDigitalAsset/LSP8IdentifiableDigitalAsset.sol": {
-			"keccak256": "0x592c53c23d21eb3cbc4e453db0fe1fdcbe1ac9dd740d09309b836d118a8ecf34",
-			"license": "Apache-2.0",
-			"urls": [
-				"bzz-raw://fe0addf5ad37bc784af425726b0f8aae8ceaa53859ac55b25259963bb00f8a7c",
-				"dweb:/ipfs/QmVzLVeUHT7kMMUKgR49X6GFoTQ81f2QQF5L6hs7zjHp7K"
-			]
-		},
 		"@lukso/lsp1-contracts/contracts/ILSP1UniversalReceiver.sol": {
 			"keccak256": "0x5b8764a678dc9d6673eafa8ad0ee6053cdea30acb58015bdf9c93f9f1788b49b",
 			"license": "Apache-2.0",
@@ -3044,11 +3012,11 @@
 			]
 		},
 		"LukSeals.sol": {
-			"keccak256": "0x7ea980b0153831d3e10e3eefdedfc278b12a95154872cd103c3ca903f81571e9",
+			"keccak256": "0xeebdf68300e1c79807624c7895d6848471254fd004d65c3a0233fe89730368bb",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://6e1b098a4473ef047b316b701ce80aa9defcafd5b6eb81c2bdeb81109438ade2",
-				"dweb:/ipfs/QmfHroEcCLoHwujaH7Li2LZtbZv3gAcp29kkbbfPUZPiKK"
+				"bzz-raw://ed9aa2284657408d5843772bd2a2d676949d680a67c325e60fe3a05e0769844c",
+				"dweb:/ipfs/QmYK21sTBgJVsb8hCAmqLyytXWm5ocrT2fzo6sgWK8ogwh"
 			]
 		}
 	},

@@ -108,6 +108,7 @@ export async function getAllReacted() {
         return error
     }
 }
+
 export async function getLastGift() {
     const { web3, contract } = initContract()
 

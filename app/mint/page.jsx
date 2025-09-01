@@ -236,8 +236,8 @@ export default function Page() {
     }
   }
 
-  const rAsset = async (cid) => {
-    const assetBuffer = await fetch(`${cid}`, { mode: 'no-cors' }).then(async (response) => {
+  const rAsset = async (url) => {
+    const assetBuffer = await fetch(`${url}`, { mode: 'no-cors' }).then(async (response) => {
       return response.arrayBuffer().then((buffer) => new Uint8Array(buffer))
     })
 
@@ -257,20 +257,39 @@ export default function Page() {
 
   const sleep = (ms) => new Promise((r) => setTimeout(r, ms))
 
-  const metadataVerifiableURL = async (CID) => {
-    return rAsset(`${process.env.NEXT_PUBLIC_IPFS_GATEWAY}${CID}`).then((res) => {
+  const metadataVerifiableURL = async (json, CID) => {
+   
       const verfiableUriIdentifier = '0x0000'
       const verificationMethod = web3.utils.keccak256('keccak256(utf8)').substr(0, 10)
-      const verificationData = web3.utils.keccak256(res) // json or res
-      console.log(verificationData)
+      const verificationData = web3.utils.keccak256(JSON.stringify(json)) // json or res
+      //console.log(verificationData)
       //return
       const verificationDataLength = web3.utils.padLeft(web3.utils.numberToHex(verificationData.substring(2).length / 2), 4)
       const url = web3.utils.utf8ToHex(`ipfs://${CID}`)
       const VerfiableURI = verfiableUriIdentifier + verificationMethod.substring(2) + verificationDataLength.substring(2) + verificationData.substring(2) + url.substring(2)
       console.log(`VerfiableURI => `, VerfiableURI)
       return VerfiableURI
-    })
+
   }
+
+    const approve = async (e) => {
+
+    const t = (e.target.innerText = `Waiting...`)
+
+    return contractFish.methods
+      .authorizeOperator(process.env.NEXT_PUBLIC_CONTRACT, web3.utils.toWei(100000,`ether`), '0x')
+      .send({
+        from: auth.accounts[0],
+        value: 0,
+      })
+  .then((res) => {
+          console.log(res)
+        e.target.innerText = `Approve`
+        toast.dismiss(t)
+        // Fetch tokens
+      })
+
+    }
 
   const mint = async (e) => {
     e.target.disabled = true
@@ -362,9 +381,9 @@ export default function Page() {
     const metadata = {
       LSP4Metadata: {
         name: 'LukSeals',
-        description: `🦭🦭🦭🦭`,
+        description: `A heartwarming, hand-drawn collectible experience on LUKSO. A collection to grow, collect, and play with.`,
         links: [
-          { title: 'Mint', url: 'https://' },
+          { title: 'Mint', url: 'https://lukseals.club' },
           { title: '𝕏', url: 'https://x.com/LukSeals' },
         ],
         attributes: attributes,
@@ -372,10 +391,10 @@ export default function Page() {
           {
             width: 512,
             height: 512,
-            url: 'ipfs://bafybeiaziuramvgnceele5wetw5tt65bgp2z63faax7ihvrjd4wlvfsooq',
+            url: 'ipfs://bafkreifji25o3zylrjn7u6zu6lq3vvdpjh7hitq3z32rdetbpjbc3wozsy',
             verification: {
               method: 'keccak256(bytes)',
-              data: '0xe99121bbedf99dcf763f1a216ca8cd5847bce15e6930df1e92913c56367f92d1',
+              data: '0xc1a86d826180228955efcb8f588da2d4f1b677eeabbd4ce21e12ef34e33d4a1b',
             },
           },
         ],
@@ -398,7 +417,8 @@ export default function Page() {
     }
 
     const uploadMetadataResult = await uploadJSON(metadata)
-    const metadataVerified = await metadataVerifiableURL(uploadMetadataResult)
+    console.log(uploadMetadataResult)
+    const metadataVerified = await metadataVerifiableURL(metadata, uploadMetadataResult)
     console.log(`metadataVerified => `, metadataVerified)
 
     const activePhase = await contract.methods.activePhase().call()
@@ -612,27 +632,12 @@ export default function Page() {
     <div className={`${styles.page} ms-motion-slideDownIn`}>
       <div className={`__container`} data-width={`xlarge`}>
         <button className="btn mt-10 mb-20 w-100" onClick={(e) => mint(e)}>
-          Mint
+          Mint (in mint I will send the level0 metadata always) the real metadata will send on levelup and down
         </button>
 
-        <div className={`${styles['board']} d-f-c card`}>
-          <svg ref={SVG} viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
-            {randomType === `Common` ? (
-              <>
-                <g ref={backgroundGroupRef} name={`backgroundGroup`} />
-                <g ref={bodycolorGroupRef} name={`bodycolorGroup`} />
-                <g ref={expressionGroupRef} name={`expressionGroup`} />
-                <g ref={bodyGroupRef} name={`bodyGroup`} />
-                <g ref={headGroupRef} name={`headGroup`} />
-                <g ref={extraGroupRef} name={`extraGroup`} />
-              </>
-            ) : (
-              <>
-                <g ref={vipRef} name={`VIP`} />
-              </>
-            )}
-          </svg>
-        </div>
+                <button className="btn mt-10 mb-20 w-100" onClick={(e) => approve(e)}>
+          Approve
+        </button>
 
         {auth.walletConnected && (
           <>
@@ -642,7 +647,7 @@ export default function Page() {
               <small>LYX</small>
             </p>
             <p className={`d-flex align-items-center gap-025`}>
-              <b>Wallet balance:</b>
+              <b>Wallet Fish balance:</b>
               <WalletFishBalance />
               <small>FISH</small>
             </p>

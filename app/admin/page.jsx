@@ -43,7 +43,7 @@ export default function Page() {
   const [LYX, setLYX] = useState(0)
   const [level, setlevel] = useState()
   const auth = useUpProvider()
-  const { readOnlyContract } = initContract()
+  const { contractReadonly } = initContract()
 
   const web3 = new Web3(auth.provider)
   const contract = new web3.eth.Contract(ABI, process.env.NEXT_PUBLIC_CONTRACT)
@@ -980,7 +980,7 @@ export default function Page() {
                   <div className="border border--dark" style={{ background: `var(--black-050)`, padding: `10px` }}>
                     <div>
                       <label htmlFor="">Name</label>
-                      <input type="text" name="_phaseName" defaultValue={web3.utils.keccak256(`phase${selectedPhase - 1}`)} required />
+                      <input type="text" name="_phaseName" defaultValue={web3.utils.keccak256(`phase${selectedPhase}`)} required />
                       <input type="hidden" name="_phaseNameHidden" defaultValue={``} />
                     </div>
                     <div>

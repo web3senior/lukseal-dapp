@@ -1,15 +1,15 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.30;
 
-import {LSP8IdentifiableDigitalAsset} from "@lukso/lsp-smart-contracts/contracts/LSP8IdentifiableDigitalAsset/LSP8IdentifiableDigitalAsset.sol";
+import {LSP8IdentifiableDigitalAsset} from "@lukso/lsp8-contracts/contracts/LSP8IdentifiableDigitalAsset.sol";
 import {_LSP4_TOKEN_TYPE_TOKEN, _LSP4_TOKEN_TYPE_COLLECTION, _LSP4_METADATA_KEY} from "@lukso/lsp4-contracts/contracts/LSP4Constants.sol";
-import {ILSP7DigitalAsset as ILSP7} from "@lukso/lsp-smart-contracts/contracts/LSP7DigitalAsset/ILSP7DigitalAsset.sol";
-import {ILSP8IdentifiableDigitalAsset as ILSP8} from "@lukso/lsp-smart-contracts/contracts/LSP8IdentifiableDigitalAsset/ILSP8IdentifiableDigitalAsset.sol";
-import {ILSP26FollowerSystem as IFollowerSystem} from "@lukso/lsp-smart-contracts/contracts/LSP26FollowerSystem/ILSP26FollowerSystem.sol";
+import {ILSP7DigitalAsset as ILSP7} from "@lukso/lsp7-contracts/contracts/ILSP7DigitalAsset.sol";
+import {ILSP8IdentifiableDigitalAsset as ILSP8} from "@lukso/lsp8-contracts/contracts/ILSP8IdentifiableDigitalAsset.sol";
+import {ILSP26FollowerSystem as IFollowerSystem} from "@lukso/lsp26-contracts/contracts/ILSP26FollowerSystem.sol";
+import {ILSP7Burnable} from "./ILSP7Burnable.sol";
 import "@openzeppelin/contracts/utils/ReentrancyGuard.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
 import "@openzeppelin/contracts/utils/Pausable.sol";
-import {ILSP7Burnable} from "./ILSP7Burnable.sol";
 import "./Counters.sol";
 import "./Event.sol";
 import "./Error.sol";
@@ -134,16 +134,16 @@ contract LukSeals is LSP8IdentifiableDigitalAsset("LukSeals", "SEAL", msg.sender
         activePhase = keccak256(bytes("phase1"));
 
         // Set the level prices
-        levelPrice[1] = 2_000 ether;
-        levelPrice[2] = 2_500 ether;
-        levelPrice[3] = 3_500 ether;
-        levelPrice[4] = 4_000 ether;
-        levelPrice[5] = 5_000 ether;
-        levelPrice[6] = 5_000 ether;
-        levelPrice[7] = 25_000 ether;
-        levelPrice[8] = 25_000 ether;
-        levelPrice[9] = 50_000 ether;
-        levelPrice[10] = 100_000 ether;
+        levelPrice[1] = 2_000;
+        levelPrice[2] = 2_500;
+        levelPrice[3] = 3_500;
+        levelPrice[4] = 4_000;
+        levelPrice[5] = 5_000;
+        levelPrice[6] = 5_000;
+        levelPrice[7] = 25_000;
+        levelPrice[8] = 25_000;
+        levelPrice[9] = 50_000;
+        levelPrice[10] = 100_000;
 
         // Set the initialized flag to prevent subsequent calls.
         initialized = true;
@@ -263,41 +263,39 @@ contract LukSeals is LSP8IdentifiableDigitalAsset("LukSeals", "SEAL", msg.sender
     // every 24 hours
     function tapIt(bytes32 _tokenId) public {
         // Formula: total XP * tapPoint = VFISH
-        // mapping(address => uint256) public xp; // user => point
-        // mapping(address => uint256) public lastTap; // user => timestamp
 
         // Check if passed 24 hours of last tap
-        if (lastTap[_msgSender()] + 24 hours < block.timestamp) revert Errors.CooldownPeriodNotPassed();
+        require (lastTap[_msgSender()] + 24 hours < block.timestamp, Errors.CooldownPeriodNotPassed()) ;
 
         uint256 tapPoint = 0;
 
-        if (memberCardContract.balanceOf(_msgSender()) > 0) tapPoint = PPT * 8; // memberCard
-        if (richContract.balanceOf(_msgSender()) > 0) tapPoint = PPT * 3; // richFish
-        if (fishCanContract.balanceOf(_msgSender()) > 0) tapPoint = PPT * 3; // fishCan
+        if (memberCardContract.balanceOf(_msgSender()) > 0) tapPoint += PPT * 8; // memberCard
+        if (richContract.balanceOf(_msgSender()) > 0) tapPoint += PPT * 3; // richFish
+        if (fishCanContract.balanceOf(_msgSender()) > 0) tapPoint += PPT * 3; // fishCan
 
-        if (fishContract.balanceOf(_msgSender()) > 1_000_000 ether) tapPoint = PPT * 2; // 1mFish
-        if (fishContract.balanceOf(_msgSender()) > 3_000_000 ether) tapPoint = PPT * 3; // 3mFish
-        if (fishContract.balanceOf(_msgSender()) > 5_000_000 ether) tapPoint = PPT * 5; // 5mFish
-        if (fishContract.balanceOf(_msgSender()) > 7_000_000 ether) tapPoint = PPT * 7; // 7mFish
-        if (fishContract.balanceOf(_msgSender()) > 10_000_000 ether) tapPoint = PPT * 10; // 10mFish
+        if (fishContract.balanceOf(_msgSender()) > 1_000_000 ether) tapPoint += PPT * 2; // 1mFish
+        if (fishContract.balanceOf(_msgSender()) > 3_000_000 ether) tapPoint += PPT * 3; // 3mFish
+        if (fishContract.balanceOf(_msgSender()) > 5_000_000 ether) tapPoint += PPT * 5; // 5mFish
+        if (fishContract.balanceOf(_msgSender()) > 7_000_000 ether) tapPoint += PPT * 7; // 7mFish
+        if (fishContract.balanceOf(_msgSender()) > 10_000_000 ether) tapPoint += PPT * 10; // 10mFish
 
-        if (fSys.isFollowing(_msgSender(), LUKSEALS)) tapPoint = PPT * 2; // followLukSeals
-        if (fSys.isFollowing(_msgSender(), MADSKI)) tapPoint = PPT * 2; // followMadski
-        if (fSys.isFollowing(_msgSender(), ARATTALABS)) tapPoint = PPT * 1; // followArattaLabs
-        if (fSys.isFollowing(_msgSender(), DACHRIZ)) tapPoint = PPT * 1; // followDachriz
-        if (fSys.isFollowing(_msgSender(), ARFI)) tapPoint = PPT * 1; // followARF-I
+        if (fSys.isFollowing(_msgSender(), LUKSEALS)) tapPoint += PPT * 2; // followLukSeals
+        if (fSys.isFollowing(_msgSender(), MADSKI)) tapPoint += PPT * 2; // followMadski
+        if (fSys.isFollowing(_msgSender(), ARATTALABS)) tapPoint += PPT * 1; // followArattaLabs
+        if (fSys.isFollowing(_msgSender(), DACHRIZ)) tapPoint += PPT * 1; // followDachriz
+        if (fSys.isFollowing(_msgSender(), ARFI)) tapPoint += PPT * 1; // followARF-I
 
-        if (fSys.isFollowing(LUKSEALS, _msgSender())) tapPoint = PPT * 2; // beFollowedByLukSeals
-        if (fSys.isFollowing(MADSKI, _msgSender())) tapPoint = PPT * 2; // beFollowedByArattaLabs
-        if (fSys.isFollowing(ARFI, _msgSender())) tapPoint = PPT * 4; // beFollowedByARF-I
-        if (fSys.isFollowing(MADSKI, _msgSender())) tapPoint = PPT * 1; // beFollowedByMadski
+        if (fSys.isFollowing(LUKSEALS, _msgSender())) tapPoint += PPT * 2; // beFollowedByLukSeals
+        if (fSys.isFollowing(MADSKI, _msgSender())) tapPoint += PPT * 2; // beFollowedByArattaLabs
+        if (fSys.isFollowing(ARFI, _msgSender())) tapPoint += PPT * 4; // beFollowedByARF-I
+        if (fSys.isFollowing(MADSKI, _msgSender())) tapPoint += PPT * 1; // beFollowedByMadski
 
-        if (balanceOf(_msgSender()) >= 3) tapPoint = PPT * 2; // have3seals
-        if (balanceOf(_msgSender()) >= 5) tapPoint = PPT * 2; // have5seals
-        if (balanceOf(_msgSender()) >= 10) tapPoint = PPT * 3; // have10seals
-        if (balanceOf(_msgSender()) >= 15) tapPoint = PPT * 3; // have15seals
-        if (balanceOf(_msgSender()) >= 20) tapPoint = PPT * 5; // have20seals
-        if (balanceOf(_msgSender()) >= 50) tapPoint = PPT * 10; // have50seals
+        if (balanceOf(_msgSender()) >= 3) tapPoint += PPT * 2; // have3seals
+        if (balanceOf(_msgSender()) >= 5) tapPoint += PPT * 2; // have5seals
+        if (balanceOf(_msgSender()) >= 10) tapPoint += PPT * 3; // have10seals
+        if (balanceOf(_msgSender()) >= 15) tapPoint += PPT * 3; // have15seals
+        if (balanceOf(_msgSender()) >= 20) tapPoint += PPT * 5; // have20seals
+        if (balanceOf(_msgSender()) >= 50) tapPoint += PPT * 10; // have50seals
 
         LevelData memory levelData = level[_tokenId];
         levelData.xp += tapPoint;
